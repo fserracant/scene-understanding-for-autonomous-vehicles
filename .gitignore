@@ -1,2 +1,5 @@
+.idea/
+.venv/
+
 # Compiled Python
 *.pyc
