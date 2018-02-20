@@ -1,13 +1,10 @@
 # Scene understading for autonomous vehicles
-
 This project is done in the framework of the Master in Computer Vision by
 Universitat Autònoma de Barcelona (UAB) in the module _M5: Visual recognition_
-
 
 ## Getting Started
 
 ### Prerequisites
-
 The software need the following software to run:
 
 - [Python 2.7][python27]
@@ -27,7 +24,6 @@ pip install pipenv
 
 
 ### Installing
-
 To install the virtual environment you only have to run pipenv from project's
 root directory:
 
@@ -47,20 +43,17 @@ You can find their explanation as well as more environment variables in
 [Pipenv's documentation][pipenv-env-vars]
 
 
-## Build With
-
+## Built With
 This project is using [Keras][keras] as a high-level neural networks API running
 on top of [Tensorflow][tf] library.
 
 ## Authors
-
 - Ferran Pérez - _dev_ - [fperezgamonal][ferran-github]
 - Joan Francesc Serracant - _dev_ - [fserracan][cesc-github]
 - Jonatan Poveda - _dev_ - [jonpoveda][jonatan-github]
 - Martí Cobos - _dev_ - [marticobos][marti-github]
 
 ## License
-
 This project is licensed under the GPLv3 License - see the [LICENSE.md](LICENSE.md) file for details
 
 <!--
