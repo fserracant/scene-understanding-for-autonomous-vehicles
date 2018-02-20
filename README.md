@@ -78,7 +78,6 @@ Drive][weights].
 - Jonatan Poveda            - _dev_ - [jonpoveda][jonatan-github] - [contact](mailto:jonatan.poveda@e-campus.uab.cat)
 - Martí Cobos               - _dev_ - [marticobos][marti-github] - [contact](mailto:marti.cobos@e-campus.uab.cat)
 
-
 ## License
 This project is licensed under the GPLv3 License - see the [LICENSE.md](LICENSE.md) file for details
 
