@@ -3,7 +3,8 @@ This project is done in the framework of the Master in Computer Vision by
 Universitat Autònoma de Barcelona (UAB) in the module _M5: Visual recognition_.
 
 <!-- Short abstract (2-lines) -->
-<!-- Link to the Overleaf article (Not editable link), at the moment just the title and structure, no content yet -->
+
+For more information check our report in [Overleaf][overleaf] or [Google Drive][gdrive]
 
 ## Getting Started
 
