@@ -1,6 +1,9 @@
 # Scene understading for autonomous vehicles
 This project is done in the framework of the Master in Computer Vision by
-Universitat Autònoma de Barcelona (UAB) in the module _M5: Visual recognition_
+Universitat Autònoma de Barcelona (UAB) in the module _M5: Visual recognition_.
+
+<!-- Short abstract (2-lines) -->
+<!-- Link to the Overleaf article (Not editable link), at the moment just the title and structure, no content yet -->
 
 ## Getting Started
 
@@ -47,11 +50,13 @@ You can find their explanation as well as more environment variables in
 This project is using [Keras][keras] as a high-level neural networks API running
 on top of [Tensorflow][tf] library.
 
+
 ## Authors
-- Ferran Pérez - _dev_ - [fperezgamonal][ferran-github]
-- Joan Francesc Serracant - _dev_ - [fserracan][cesc-github]
-- Jonatan Poveda - _dev_ - [jonpoveda][jonatan-github]
-- Martí Cobos - _dev_ - [marticobos][marti-github]
+- Ferran Pérez              - _dev_ - [fperezgamonal][ferran-github] - [contact](mailto:ferran.perezg@e-campus.uab.cat)
+- Joan Francesc Serracant   - _dev_ - [fserracan][cesc-github] -  [contact](mailto:joanfrancesc.serracant@e-campus.uab.cat)
+- Jonatan Poveda            - _dev_ - [jonpoveda][jonatan-github] - [contact](mailto:jonatan.poveda@e-campus.uab.cat)
+- Martí Cobos               - _dev_ - [marticobos][marti-github] - [contact](mailto:marti.cobos@e-campus.uab.cat)
+
 
 ## License
 This project is licensed under the GPLv3 License - see the [LICENSE.md](LICENSE.md) file for details
@@ -71,3 +76,6 @@ This project is licensed under the GPLv3 License - see the [LICENSE.md](LICENSE.
 [cesc-github]: https://github.com/fserracant
 [jonatan-github]: https://github.com/jonpoveda
 [marti-github]: https://github.com/marticobos
+
+[overleaf]: https://www.overleaf.com/read/rgbqdstbtmqz
+[gdrive]: https://docs.google.com/presentation/d/1fmX2s14--DSvh6eTJD6e-rf5zkyVoq6O_012BAI6jJs/edit?usp=sharing
