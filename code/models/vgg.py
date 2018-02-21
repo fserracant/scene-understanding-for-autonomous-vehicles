@@ -43,13 +43,13 @@ def build_vgg(img_shape=(3, 224, 224), n_classes=1000, n_layers=16, l2_reg=0.,
     # Freeze some layers
     if freeze_layers_from is not None:
         if freeze_layers_from == 'base_model':
-            print ('   Freezing base model layers')
+            print('   Freezing base model layers')
             for layer in base_model.layers:
                 layer.trainable = False
         else:
             for i, layer in enumerate(model.layers):
                 print(i, layer.name)
-            print ('   Freezing from layer 0 to ' + str(freeze_layers_from))
+            print('   Freezing from layer 0 to ' + str(freeze_layers_from))
             for layer in model.layers[:freeze_layers_from]:
                layer.trainable = False
             for layer in model.layers[freeze_layers_from:]:

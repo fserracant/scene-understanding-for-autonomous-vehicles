@@ -3,7 +3,9 @@ import argparse
 import os
 import sys
 from getpass import getuser
+
 import matplotlib
+
 matplotlib.use('Agg')  # Faster plot
 
 # Import tools
@@ -19,21 +21,21 @@ from models.model_factory import Model_Factory
 def process(cf):
     # Enable log file
     sys.stdout = Logger(cf.log_file)
-    print (' ---> Init experiment: ' + cf.exp_name + ' <---')
+    print(' ---> Init experiment: ' + cf.exp_name + ' <---')
 
     # Create the data generators
     train_gen, valid_gen, test_gen = Dataset_Generators().make(cf)
 
     # Create the optimizer
-    print ('\n > Creating optimizer...')
+    print('\n > Creating optimizer...')
     optimizer = Optimizer_Factory().make(cf)
 
     # Build model
-    print ('\n > Building model...')
+    print('\n > Building model...')
     model = Model_Factory().make(cf, optimizer)
 
     # Create the callbacks
-    print ('\n > Creating callbacks...')
+    print('\n > Creating callbacks...')
     cb = Callbacks_Factory().make(cf, valid_gen)
 
     if cf.train_model:
@@ -53,19 +55,21 @@ def process(cf):
         model.predict(test_gen, tag='pred')
 
     # Finish
-    print (' ---> Finish experiment: ' + cf.exp_name + ' <---')
+    print(' ---> Finish experiment: ' + cf.exp_name + ' <---')
 
 
 # Sets the backend and GPU device.
 class Environment():
     def __init__(self, backend='tensorflow'):
-        #backend = 'tensorflow' # 'theano' or 'tensorflow'
+        # backend = 'tensorflow' # 'theano' or 'tensorflow'
         os.environ['KERAS_BACKEND'] = backend
-        os.environ["CUDA_VISIBLE_DEVICES"]="0" # "" to run in CPU, extra slow! just for debuging
+        os.environ[
+            "CUDA_VISIBLE_DEVICES"] = "0"  # "" to run in CPU, extra slow! just for debuging
         if backend == 'theano':
             # os.environ['THEANO_FLAGS']='mode=FAST_RUN,device=gpu1,floatX=float32,optimizer=fast_compile'
             """ fast_compile que lo que hace es desactivar las optimizaciones => mas lento """
-            os.environ['THEANO_FLAGS'] = 'device=gpu0,floatX=float32,lib.cnmem=0.95'
+            os.environ[
+                'THEANO_FLAGS'] = 'device=gpu0,floatX=float32,lib.cnmem=0.95'
             print('Backend is Theano now')
         else:
             print('Backend is Tensorflow now')
@@ -89,11 +93,11 @@ def main():
 
     arguments = parser.parse_args()
 
-    assert arguments.config_path is not None, 'Please provide a configuration'\
-                                              'path using -c config/pathname'\
+    assert arguments.config_path is not None, 'Please provide a configuration' \
+                                              'path using -c config/pathname' \
                                               ' in the command line'
-    assert arguments.exp_name is not None, 'Please provide a name for the '\
-                                           'experiment using -e name in the '\
+    assert arguments.exp_name is not None, 'Please provide a name for the ' \
+                                           'experiment using -e name in the ' \
                                            'command line'
 
     # Define the user paths
@@ -102,7 +106,8 @@ def main():
     dataset_path = os.path.join(local_path, 'Datasets')
     shared_dataset_path = os.path.join(shared_path, 'Datasets')
     experiments_path = os.path.join(local_path, getuser(), 'Experiments')
-    shared_experiments_path = os.path.join(shared_path, getuser(), 'Experiments')
+    shared_experiments_path = os.path.join(shared_path, getuser(),
+                                           'Experiments')
     usr_path = os.path.join('/home/', getuser())
 
     # Load configuration files

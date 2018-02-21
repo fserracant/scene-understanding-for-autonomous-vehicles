@@ -44,7 +44,7 @@ export PIPENV_MAX_DEPTH=1
 ```
 
 You can find their explanation as well as more environment variables in
-[Pipenv's documentation][pipenv-env-vars]
+[configuration with environment variables][pipenv-env-vars].
 
 
 ## Built With

@@ -15,7 +15,7 @@ def plot_history(hist, save_path, n_classes,
 
     # Create string to print
     str = ''
-    
+
     # Colors (we assume there are no more than 7 metrics):
     colors = ['r', 'g', 'k', 'm', 'c', 'y', 'w']
 
@@ -27,7 +27,7 @@ def plot_history(hist, save_path, n_classes,
     else:
         raise ValueError('Unknown best type. It should be max or min')
     str += '   Best epoch: {}\n'.format(best_index)
-    
+
     # Initialize figure:
     # Axis 1 will be for metrics, and axis 2 for losses.
     fig, ax1 = plt.subplots()
@@ -55,10 +55,10 @@ def plot_history(hist, save_path, n_classes,
             idx += 1
             ax1.plot(hist[metric], colors[idx] + '--', label='{} ({:.3f})'.format(metric, best_value))
 
-    # Print the result
+    # printthe result
     if verbose:
         print(str)
-        
+
     ax1.set_ylim(0,1)
 
     # Add title
@@ -68,7 +68,7 @@ def plot_history(hist, save_path, n_classes,
     ax1.set_ylabel('Metric')
     ax2.set_ylabel('Loss')
     ax1.set_xlabel('Epoch')
-    
+
     # ??
     fig.tight_layout()
 

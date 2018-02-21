@@ -8,7 +8,7 @@ name = "pypi"
 [packages]
 
 boost = "~=0.1"
-keras = "~=2.1"
+keras = "*"
 matplotlib = "~=2.1"
 numpy = "~=1.14"
 scikit-image = "~=0.13"
@@ -17,6 +17,7 @@ scipy = "~=1.0"
 simpleitk = "~=1.0"
 sklearn = "~=0.0"
 tensorflow = "~=1.5"
+#functools = "*"
 
 
 [dev-packages]
@@ -25,4 +26,4 @@ tensorflow = "~=1.5"
 
 [requires]
 
-python_version = "2.7"
+python_version = "3.6"

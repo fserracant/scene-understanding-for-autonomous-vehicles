@@ -10,7 +10,7 @@ class Optimizer_Factory():
         # Create the optimizer
         if cf.optimizer == 'rmsprop':
             opt = RMSprop(lr=cf.learning_rate, rho=0.9, epsilon=1e-8, clipnorm=10)
-            print ('   Optimizer: rmsprop. Lr: {}. Rho: 0.9, epsilon=1e-8, '
+            print('   Optimizer: rmsprop. Lr: {}. Rho: 0.9, epsilon=1e-8, '
                    'clipnorm=10'.format(cf.learning_rate))
 
         elif cf.optimizer == 'adam':

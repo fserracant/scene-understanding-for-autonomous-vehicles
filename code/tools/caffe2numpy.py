@@ -101,45 +101,45 @@ def convert_weights(layers, v='V1'):
         elif typ == 'ReLU':
             n_blobs = len(layer.blobs)
             if n_blobs > 0:
-                print ('ERROR: ' + str(n_blobs))
+                print('ERROR: ' + str(n_blobs))
             print(" > {} {}: No weights".format(typ, name))
         elif typ == 'Eltwise':
             n_blobs = len(layer.blobs)
             if n_blobs > 0:
-                print ('ERROR: ' + str(n_blobs))
+                print('ERROR: ' + str(n_blobs))
             print(" > {} {}: No weights".format(typ, name))
         elif typ == 'Split':
             n_blobs = len(layer.blobs)
             if n_blobs > 0:
-                print ('ERROR: ' + str(n_blobs))
+                print('ERROR: ' + str(n_blobs))
             print(" > {} {}: No weights".format(typ, name))
         elif typ == 'Dropout':
             n_blobs = len(layer.blobs)
             if n_blobs > 0:
-                print ('ERROR: ' + str(n_blobs))
+                print('ERROR: ' + str(n_blobs))
             print(" > {} {}: No weights".format(typ, name))
         elif typ == 'Crop':
             n_blobs = len(layer.blobs)
             if n_blobs > 0:
-                print ('ERROR: ' + str(n_blobs))
+                print('ERROR: ' + str(n_blobs))
             print(" > {} {}: No weights".format(typ, name))
         elif typ == 'Softmax':
             n_blobs = len(layer.blobs)
             if n_blobs > 0:
-                print ('ERROR: ' + str(n_blobs))
+                print('ERROR: ' + str(n_blobs))
             print(" > {} {}: No weights".format(typ, name))
         elif typ == 'Input':
             n_blobs = len(layer.blobs)
             if n_blobs > 0:
-                print ('ERROR: ' + str(n_blobs))
+                print('ERROR: ' + str(n_blobs))
             print(" > {} {}: No weights".format(typ, name))
         elif typ == 'Silence':
             n_blobs = len(layer.blobs)
             if n_blobs > 0:
-                print ('ERROR: ' + str(n_blobs))
+                print('ERROR: ' + str(n_blobs))
             print(" > {} {}: No weights".format(typ, name))
         else:
-            print ('ERROR: Not found type: ' + typ)
+            print('ERROR: Not found type: ' + typ)
 
     return weights
 
@@ -151,16 +151,16 @@ def load_caffe(path_prototxt='weights/resnetFCN.prototxt',
                version='V1'):
 
     # Load the caffe network
-    print (' --> Loading the caffe weights...')
+    print(' --> Loading the caffe weights...')
     net_caffe = caffe.Net(path_prototxt, path_weights, caffe.TEST)
     layers_caffe = dict(zip(list(net_caffe._layer_names), net_caffe.layers))
 
     # Convert weights
-    print (' --> Converting the caffe weights to numpy...')
+    print(' --> Converting the caffe weights to numpy...')
     weights_caffe = convert_weights(layers_caffe, v=version)
 
     # Save weights
-    print (' --> Saving the weights in numpy...')
+    print(' --> Saving the weights in numpy...')
     np.save(out_path, weights_caffe)
 
 

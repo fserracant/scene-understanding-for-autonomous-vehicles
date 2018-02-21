@@ -7,7 +7,7 @@ from keras.models import Model
 
 # Load numpy weights
 def load_numpy(model, path_weights="weights/resnetFCN.npy"):
-    print (' > Loading the numpy weights...')
+    print(' > Loading the numpy weights...')
 
     # Load weights
     weights_numpy = np.load(path_weights)
@@ -52,6 +52,6 @@ def load_numpy(model, path_weights="weights/resnetFCN.npy"):
                 layer.set_weights(layer_weights_numpy)
 
             else:
-                print ('ERROR: ' + layer.name + ' not in caffe weights')
+                print('ERROR: ' + layer.name + ' not in caffe weights')
 
     return model

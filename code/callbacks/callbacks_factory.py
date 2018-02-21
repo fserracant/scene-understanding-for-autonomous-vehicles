@@ -1,11 +1,12 @@
 import math
 import os
 
-from keras.callbacks import (EarlyStopping, ModelCheckpoint, CSVLogger,
-                             LearningRateScheduler, TensorBoard)
+from keras.callbacks import (CSVLogger, EarlyStopping, LearningRateScheduler,
+                             ModelCheckpoint, TensorBoard)
 
-from callbacks import (History_plot, Jacc_new, Save_results, LRDecayScheduler,
-                       LearningRateSchedulerBatch, Scheduler)
+from callbacks.callbacks import (History_plot, Jacc_new, LRDecayScheduler,
+                                 LearningRateSchedulerBatch, Save_results,
+                                 Scheduler)
 
 
 # Create callbacks
@@ -29,7 +30,8 @@ class Callbacks_Factory():
                                 save_path=cf.savepath,
                                 generator=valid_gen,
                                 epoch_length=int(
-                                    math.ceil(cf.save_results_nsamples / float(cf.save_results_batch_size))),
+                                    math.ceil(cf.save_results_nsamples / float(
+                                        cf.save_results_batch_size))),
                                 color_map=cf.dataset.color_map,
                                 classes=cf.dataset.classes,
                                 tag='valid')]
@@ -45,24 +47,27 @@ class Callbacks_Factory():
         # Define model saving callbacks
         if cf.checkpoint_enabled:
             print('   Model Checkpoint')
-            cb += [ModelCheckpoint(filepath=os.path.join(cf.savepath, "weights.hdf5"),
-                                   verbose=cf.checkpoint_verbose,
-                                   monitor=cf.checkpoint_monitor,
-                                   mode=cf.checkpoint_mode,
-                                   save_best_only=cf.checkpoint_save_best_only,
-                                   save_weights_only=cf.checkpoint_save_weights_only)]
+            cb += [ModelCheckpoint(
+                filepath=os.path.join(cf.savepath, "weights.hdf5"),
+                verbose=cf.checkpoint_verbose,
+                monitor=cf.checkpoint_monitor,
+                mode=cf.checkpoint_mode,
+                save_best_only=cf.checkpoint_save_best_only,
+                save_weights_only=cf.checkpoint_save_weights_only)]
 
         # Plot the loss after every epoch.
         if cf.plotHist_enabled:
             print('   Plot per epoch')
             cb += [History_plot(cf.dataset.n_classes, cf.savepath,
                                 cf.train_metrics, cf.valid_metrics,
-                                cf.best_metric, cf.best_type, cf.plotHist_verbose)]
+                                cf.best_metric, cf.best_type,
+                                cf.plotHist_verbose)]
 
         # Decay learning rate at specific epochs
         if cf.lrDecayScheduler_enabled:
             print('   Learning rate decay scheduler (Deprecated)')
-            cb += [LRDecayScheduler(cf.lrDecayScheduler_epochs, cf.lrDecayScheduler_rate)]
+            cb += [LRDecayScheduler(cf.lrDecayScheduler_epochs,
+                                    cf.lrDecayScheduler_rate)]
 
         # Save the log
         cb += [CSVLogger(os.path.join(cf.savepath, 'logFile.csv'),
@@ -76,11 +81,13 @@ class Callbacks_Factory():
                                   cf.LRScheduler_S, cf.LRScheduler_power)
 
             if cf.LRScheduler_batch_epoch == 'batch':
-                cb += [LearningRateSchedulerBatch(scheduler.scheduler_function)]
+                cb += [
+                    LearningRateSchedulerBatch(scheduler.scheduler_function)]
             elif cf.LRScheduler_batch_epoch == 'epoch':
                 cb += [LearningRateScheduler(scheduler.scheduler_function)]
             else:
-                raise ValueError('Unknown scheduler mode: ' + LRScheduler_batch_epoch)
+                raise ValueError(
+                    'Unknown scheduler mode: ' + LRScheduler_batch_epoch)
 
         # TensorBoard callback
         if cf.TensorBoard_enabled:

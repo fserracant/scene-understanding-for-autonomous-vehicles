@@ -97,7 +97,7 @@ class Model_Factory():
             raise ValueError('Unknown model name')
 
         # Output the model
-        print ('   Model: ' + cf.model_name)
+        print('   Model: ' + cf.model_name)
         return model
 
     # Creates, compiles, plots and prints a Keras model. Optionally also loads its
@@ -176,7 +176,7 @@ class Model_Factory():
             plot_model(model, to_file=os.path.join(cf.savepath, 'model.png'))
 
         # Output the model
-        print ('   Model: ' + cf.model_name)
+        print('   Model: ' + cf.model_name)
         # model is a keras model, Model is a class wrapper so that we can have
         # other models (like GANs) made of a pair of keras models, with their
         # own ways to train, test and predict

@@ -378,14 +378,14 @@ class ImageDataGenerator(object):
             broadcast_shape = [1, 1, 1]
             broadcast_shape[self.channel_index - 1] = len(rgb_mean)
             self.mean = np.reshape(rgb_mean, broadcast_shape)
-            print ('   Mean {}: {}'.format(self.mean.shape, self.rgb_mean))
+            print('   Mean {}: {}'.format(self.mean.shape, self.rgb_mean))
 
         # Broadcast the shape of std
         if rgb_std is not None and featurewise_std_normalization:
             broadcast_shape = [1, 1, 1]
             broadcast_shape[self.channel_index - 1] = len(rgb_std)
             self.std = np.reshape(rgb_std, broadcast_shape)
-            print ('   Std {}: {}'.format(self.std.shape, self.rgb_std))
+            print('   Std {}: {}'.format(self.std.shape, self.rgb_std))
 
         if np.isscalar(zoom_range):
             self.zoom_range = [1 - zoom_range, 1 + zoom_range]
@@ -632,7 +632,7 @@ class ImageDataGenerator(object):
                         x1,y1,x2,y2 = b.astype(int)[ii]
                         # get the four edge points of the bounding box
                         v1 = np.array([y1,x1,1])
-                        v2 = np.array([y2,x2,1]) 
+                        v2 = np.array([y2,x2,1])
                         v3 = np.array([y2,x1,1])
                         v4 = np.array([y1,x2,1])
                         # transform the 4 points
@@ -641,10 +641,10 @@ class ImageDataGenerator(object):
                         v3 = np.dot(p_transform_matrix, v3)
                         v4 = np.dot(p_transform_matrix, v4)
                         # compute the new bounding box edges
-                        b[ii,0] = np.min([v1[1],v2[1],v3[1],v4[1]]) 
+                        b[ii,0] = np.min([v1[1],v2[1],v3[1],v4[1]])
                         b[ii,1] = np.min([v1[0],v2[0],v3[0],v4[0]])
                         b[ii,2] = np.max([v1[1],v2[1],v3[1],v4[1]])
-                        b[ii,3] = np.max([v1[0],v2[0],v3[0],v4[0]]) 
+                        b[ii,3] = np.max([v1[0],v2[0],v3[0],v4[0]])
 
         if self.channel_shift_range != 0:
             x = random_channel_shift(x, self.channel_shift_range,
@@ -689,9 +689,9 @@ class ImageDataGenerator(object):
         # TODO: tf compatible???
         crop = list(self.crop_size) if self.crop_size else None
         if crop:
-            # print ('X before: ' + str(x.shape))
-            # print ('Y before: ' + str(y.shape))
-            # print ('Crop_size: ' + str(self.crop_size))
+            # print('X before: ' + str(x.shape))
+            # print('Y before: ' + str(y.shape))
+            # print('Crop_size: ' + str(self.crop_size))
             h, w = x.shape[img_row_index], x.shape[img_col_index]
 
             # Padd image if it is smaller than the crop size
@@ -719,8 +719,8 @@ class ImageDataGenerator(object):
 
 
                 h, w = x.shape[img_row_index], x.shape[img_col_index]
-                # print ('New size X: ' + str(x.shape))
-                # print ('New size Y: ' + str(y.shape))
+                # print('New size X: ' + str(x.shape))
+                # print('New size Y: ' + str(y.shape))
                 # exit()
 
             if crop[0] < h:
@@ -751,8 +751,8 @@ class ImageDataGenerator(object):
                 b[:,2] = b[:,2] - left
                 b[:,3] = b[:,3] - top
 
-            # print ('X after: ' + str(x.shape))
-            # print ('Y after: ' + str(y.shape))
+            # print('X after: ' + str(x.shape))
+            # print('Y after: ' + str(y.shape))
 
         if self.class_mode == 'detection':
             # clamp to valid coordinate values
@@ -896,7 +896,7 @@ class ImageDataGenerator(object):
             broadcast_shape = [1, 1, 1]
             broadcast_shape[self.channel_index - 1] = len(self.rgb_mean)
             self.mean = np.reshape(self.rgb_mean, broadcast_shape)
-            print ('   Mean {}: {}'.format(self.mean.shape, self.rgb_mean,
+            print('   Mean {}: {}'.format(self.mean.shape, self.rgb_mean,
                                            self.mean))
 
         # Compute std
@@ -910,7 +910,7 @@ class ImageDataGenerator(object):
             broadcast_shape = [1, 1, 1]
             broadcast_shape[self.channel_index - 1] = len(self.rgb_std)
             self.std = np.reshape(self.rgb_std, broadcast_shape)
-            print ('   Std {}: {}'.format(self.std.shape, self.rgb_std))
+            print('   Std {}: {}'.format(self.std.shape, self.rgb_std))
 
         # Compute ZCA
         if self.zca_whitening:
@@ -947,18 +947,18 @@ class ImageDataGenerator(object):
             self.weights_median_freq_cost = np.median(priors) / priors
             self.weights_rare_freq_cost = 1 / (n_classes * priors)
 
-            # print ('Count per label: ' + str(count_per_label))
-            # print ('Total count per label: ' + str(total_count_per_label))
-            # print ('Prior: ' + str(priors))
-            # print ('Weights median_freq_cost: ' + str(self.weights_median_freq_cost))
-            # print ('Weights rare_freq_cost: ' + str(self.weights_rare_freq_cost))
+            # print('Count per label: ' + str(count_per_label))
+            # print('Total count per label: ' + str(total_count_per_label))
+            # print('Prior: ' + str(priors))
+            # print('Weights median_freq_cost: ' + str(self.weights_median_freq_cost))
+            # print('Weights rare_freq_cost: ' + str(self.weights_rare_freq_cost))
 
             if cb_weights_method == 'median_freq_cost':
                 self.cb_weights = self.weights_median_freq_cost
-                print ('Weights median_freq_cost: ' + str(self.weights_median_freq_cost))
+                print('Weights median_freq_cost: ' + str(self.weights_median_freq_cost))
             elif cb_weights_method == 'rare_freq_cost':
                 self.cb_weights = self.weights_rare_freq_cost
-                print ('Weights rare_freq_cost: ' + str(self.weights_rare_freq_cost))
+                print('Weights rare_freq_cost: ' + str(self.weights_rare_freq_cost))
             else:
                 raise ValueError('Unknown class balancing method: ' + cb_weights_method)
 

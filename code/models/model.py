@@ -100,7 +100,7 @@ class One_Net_Model(Model):
             total_time = time.time() - start_time
             fps = float(self.cf.dataset.n_images_test) / total_time
             s_p_f = total_time / float(self.cf.dataset.n_images_test)
-            print ('   Predicting time: {}. FPS: {}. Seconds per Frame: {}'.format(total_time, fps, s_p_f))
+            print('   Predicting time: {}. FPS: {}. Seconds per Frame: {}'.format(total_time, fps, s_p_f))
 
     # Test the model
     def test(self, test_gen):
@@ -131,37 +131,37 @@ class One_Net_Model(Model):
 
             if self.cf.problem_type == 'detection':
                 # Dataset and the model used
-                dataset_name = self.cf.dataset_name 
-                #model_name = self.cf.model_name 
+                dataset_name = self.cf.dataset_name
+                #model_name = self.cf.model_name
                 # Net output post-processing needs two parameters:
                 detection_threshold = 0.3 # Min probablity for a prediction to be considered
                 nms_threshold       = 0.2 # Non Maximum Suppression threshold
                 # IMPORTANT: the values of these two params will affect the final performance of the netwrok
                 #            you are allowed to find their optimal values in the validation/train sets
-                
+
                 if dataset_name == 'TT100K_detection':
                     classes = ['i2','i4','i5','il100','il60','il80','io','ip','p10','p11','p12','p19','p23','p26','p27','p3','p5','p6','pg','ph4','ph4.5','ph5','pl100','pl120','pl20','pl30','pl40','pl5','pl50','pl60','pl70','pl80','pm20','pm30','pm55','pn','pne','po','pr40','w13','w32','w55','w57','w59','wo']
                 elif dataset_name == 'Udacity':
                     classes = ['Car','Pedestrian','Truck']
                 else:
-                    print "Error: Dataset not found!"
+                    print("Error: Dataset not found!")
                     quit()
                 priors = [[0.9,1.2], [1.05,1.35], [2.15,2.55], [3.25,3.75], [5.35,5.1]]
-                
+
                 input_shape = (self.cf.dataset.n_channels,
                         self.cf.target_size_test[0],
                         self.cf.target_size_test[1])
-                
 
-                
+
+
                 test_dir = test_gen.directory
-                imfiles = [os.path.join(test_dir,f) for f in os.listdir(test_dir) 
-                                    if os.path.isfile(os.path.join(test_dir,f)) 
+                imfiles = [os.path.join(test_dir,f) for f in os.listdir(test_dir)
+                                    if os.path.isfile(os.path.join(test_dir,f))
                                     and f.endswith('jpg')]
                 inputs = []
                 img_paths = []
                 chunk_size = 128 # we are going to process all image files in chunks
-                
+
                 ok = 0.
                 total_true = 0.
                 total_pred = 0.
@@ -172,7 +172,7 @@ class One_Net_Model(Model):
                     img = img / 255.
                     inputs.append(img.copy())
                     img_paths.append(img_path)
-                    
+
                     if len(img_paths)%chunk_size == 0 or i+1 == len(imfiles):
                         print(str(i)+'/'+str(len(imfiles)))
                         inputs = np.array(inputs)
@@ -190,7 +190,7 @@ class One_Net_Model(Model):
                                 bx.probs[int(gt[j,0])] = 1.
                                 bx.x, bx.y, bx.w, bx.h = gt[j,1:].tolist()
                                 boxes_true.append(bx)
-                            
+
                             total_true += len(boxes_true)
                             true_matched = np.zeros(len(boxes_true))
                             for b in boxes_pred:
@@ -235,9 +235,9 @@ class One_Net_Model(Model):
                     I[i] = metrics_dict['I'+str(i)]
                     U[i] = metrics_dict['U'+str(i)]
                     jacc_percl[i] = I[i] / U[i]
-                    print ('   {:2d} ({:^15}): Jacc: {:6.2f}'.format(i,
+                    print('   {:2d} ({:^15}): Jacc: {:6.2f}'.format(i,
                                                                      self.cf.dataset.classes[i],
                                                                      jacc_percl[i]*100))
                 # Compute jaccard mean
                 jacc_mean = np.nanmean(jacc_percl)
-                print ('   Jaccard mean: {}'.format(jacc_mean))
+                print('   Jaccard mean: {}'.format(jacc_mean))

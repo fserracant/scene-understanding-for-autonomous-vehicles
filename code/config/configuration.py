@@ -28,7 +28,7 @@ class Configuration():
         shared_experiments_path = self.shared_experiments_path
 
         # Load configuration file
-        print config_path
+        print(config_path)
         cf = imp.load_source('config', config_path)
 
         # Save extra parameter
@@ -133,7 +133,7 @@ class Configuration():
 
         # Load dataset config file
         dataset_config_path = os.path.join(dataset_path, 'config.py')
-        print 'dataset_config_path', dataset_config_path
+        print('dataset_config_path', dataset_config_path)
         dataset_conf = imp.load_source(name, dataset_config_path)
         dataset_conf.config_path = dataset_config_path
 
@@ -163,4 +163,4 @@ class Configuration():
             start = time.time()
             copy_tree(self.configuration.savepath, self.configuration.final_savepath)
             open(os.path.join(self.configuration.final_savepath, 'lock'), 'w').close()
-            print ('   Copy time: ' + str(time.time()-start))
+            print('   Copy time: ' + str(time.time()-start))

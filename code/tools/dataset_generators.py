@@ -14,7 +14,7 @@ class Dataset_Generators():
 
         if cf.train_model:
             # Load training set
-            print ('\n > Reading training set...')
+            print('\n > Reading training set...')
             # Create the data generator with its data augmentation
             dg_tr = ImageDataGenerator(imageNet=cf.norm_imageNet_preprocess,
                                        rgb_mean=mean,
@@ -47,7 +47,7 @@ class Dataset_Generators():
 
             # Compute normalization constants if required
             if cf.norm_fit_dataset:
-                print ('   Computing normalization constants from training set...')
+                print('   Computing normalization constants from training set...')
                 # if cf.cb_weights_method is None:
                 #     dg_tr.fit_from_directory(cf.dataset.path_train_img)
                 # else:
@@ -96,7 +96,7 @@ class Dataset_Generators():
                                                        )
 
             # Load validation set
-            print ('\n > Reading validation set...')
+            print('\n > Reading validation set...')
             dg_va = ImageDataGenerator(imageNet=cf.norm_imageNet_preprocess,
                                        rgb_mean=mean,
                                        rgb_std=std,
@@ -126,7 +126,7 @@ class Dataset_Generators():
 
         if cf.test_model or cf.pred_model:
             # Load testing set
-            print ('\n > Reading testing set...')
+            print('\n > Reading testing set...')
             dg_ts = ImageDataGenerator(imageNet=cf.norm_imageNet_preprocess,
                                        rgb_mean=mean,
                                        rgb_std=std,
