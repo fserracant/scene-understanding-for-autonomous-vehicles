@@ -1,10 +1,11 @@
 # Scene understading for autonomous vehicles
 This project is done in the framework of the Master in Computer Vision by
-Universitat Autònoma de Barcelona (UAB) in the module _M5: Visual recognition_.
+Universitat Autònoma de Barcelona (UAB) in the module _M5: Visual recognition_. 
 
-<!-- Short abstract (2-lines) -->
+Abstract: "In this project we employ state-of-the-art Deep Learning algorithms for recognition, detection and segmentation tasks which are key to create a system which understands traffic scenes correctly and makes the right decision while autonomously driving".
 
-For more information check our report in [Overleaf][overleaf] or [Google Drive][gdrive]
+For more information, check our report on [Overleaf][overleaf] or our presentations on [Google Drive][gdrive]. You can find summaries for some Image Classification papers on the file [_summaries_](Summaries/summaries.md).
+___
 
 ## Getting Started
 
