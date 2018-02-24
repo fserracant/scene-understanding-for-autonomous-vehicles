@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f989b345fbeb1785d379baf37b9a5cd013c1def0a4e41757d8ab25900f26506a"
+            "sha256": "1b8bd4a811bf31bece22ca24b4aa7e2b38731570a3833854cdecb79c173ac00c"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -75,6 +75,13 @@
                 "sha256:7d46dd9f3ea1cf5f06ee0e4e1277ae618cf48dfb10ada7c8427cd46c42702a0e"
             ],
             "version": "==4.2.1"
+        },
+        "graphviz": {
+            "hashes": [
+                "sha256:4e23ab07ea37a5bd16cf96d3c31e63d792cc05f9b2c277d553838477697feb1f",
+                "sha256:606741c028acc54b1a065b33045f8c89ee0927ea77273ec409ac988f2c3d1091"
+            ],
+            "version": "==0.8.2"
         },
         "html5lib": {
             "hashes": [
@@ -225,6 +232,12 @@
                 "sha256:95b78959572de7d7fafa3acb718ed71f482932ddddddbd29ba8319c10639d863"
             ],
             "version": "==3.5.1"
+        },
+        "pydot": {
+            "hashes": [
+                "sha256:92d2e2d15531d00710f2d6fb5540d2acabc5399d464f2f20d5d21073af241eb6"
+            ],
+            "version": "==1.2.4"
         },
         "pyparsing": {
             "hashes": [
@@ -433,9 +446,9 @@
         },
         "sqlalchemy": {
             "hashes": [
-                "sha256:9e9ec143e2e246f385cfb2de8daa89d2fa466279addcb7be9e102988fdf33d24"
+                "sha256:6997507af46b10630e13b605ac278b78885fd683d038896dbee0e7ec41d809d2"
             ],
-            "version": "==1.2.3"
+            "version": "==1.2.4"
         },
         "tensorflow": {
             "hashes": [

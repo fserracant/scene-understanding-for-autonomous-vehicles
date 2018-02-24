@@ -8,7 +8,7 @@ name = "pypi"
 [packages]
 
 boost = "~=0.1"
-keras = "*"
+keras = "~=2.1"
 matplotlib = "~=2.1"
 numpy = "~=1.14"
 scikit-image = "~=0.13"
@@ -17,6 +17,8 @@ scipy = "~=1.0"
 simpleitk = "~=1.0"
 sklearn = "~=0.0"
 tensorflow = "~=1.5"
+pydot = "*"
+graphviz = "*"
 #functools = "*"
 
 
