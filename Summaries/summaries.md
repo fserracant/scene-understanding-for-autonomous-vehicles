@@ -3,14 +3,12 @@
 ## VGG
 [Very Deep Convolutional Networks for Large-scale Image Recognition](https://arxiv.org/pdf/1409.1556.pdf)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis tempor sit
-amet metus eget vestibulum. Quisque sit amet enim non odio ullamcorper
-cursus. Mauris fermentum ultrices tortor, eu condimentum elit tempor et.
-Etiam mi lacus, imperdiet vitae tristique vel, volutpat sit amet dolor.
-Morbi eros ante, accumsan vitae ante vitae, efficitur posuere arcu. Nunc
-vitae rutrum justo. Sed eget felis iaculis, sodales dui at, tempus
-nulla. Curabitur nunc ligula, sodales quis aliquam non, auctor eget
-nisl. Praesent tincidunt finibus mauris accumsan maximus.
+The convolutional neural network from the Visual Geometry Group (VGGNet) won the first place for image localisation and the second for image classification tracks in the ImageNet Challenge 2014. In classification it achieved a top-5 test error of 7.3% on submission, quite close to the winner, GoogLeNet with a 6.7%. In posterior studies they got a 6.8% of top-5 error with a more simple system than others.
+
+The architecture could be simply expressed as a stack of 3x3 conv layers with increasing number of filters, using five max-poolings with non-overlapping windows of 2x2, plus, two Fully Connected layers for regression and one for classification. The model that won is as deep as 16 weight layers, known as VGG16. 
+
+The main key of this network is to use only 3x3 filters. In order to keep the same receptive field as bigger filters, they stack several filters, increasing the receptive field each step. This have various consequences. First of all and most obvious is that stacking filters the network goes deeper. Not only that, each filter adds a non-linearity which makes the decision function more discriminative. Secondly, the number of parameters needed to express this function is less. As an example, to achieve the same receptive field of a 7x7 filter an stack of three 3x3 filters is needed, but the number of parameters are only the 19%. To avoid losing spatial resolution a padding of 1 is used in each conv. layer.
+
 
 [VGG16 Architecture](vgg16.png)
 <!-- [<img src="vgg16.png" alt="VGG16 architecture" height="400">](vgg16.png) -->
