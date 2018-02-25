@@ -1,4 +1,4 @@
-# Scene understading for autonomous vehicles
+# Scene understading for autonomous vehicles - Team 08: CoRN
 This project is done in the framework of the Master in Computer Vision by
 Universitat Autònoma de Barcelona (UAB) in the module _M5: Visual recognition_. 
 
