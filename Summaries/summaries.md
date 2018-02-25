@@ -40,3 +40,6 @@ Morbi eros ante, accumsan vitae ante vitae, efficitur posuere arcu. Nunc
 vitae rutrum justo. Sed eget felis iaculis, sodales dui at, tempus
 nulla. Curabitur nunc ligula, sodales quis aliquam non, auctor eget
 nisl. Praesent tincidunt finibus mauris accumsan maximus.
+
+[a) SEnet block](SEnet_block.png), 
+[b) Module comparison: ResNet vs SE-ResNet equivalent](ResNetmod_SEnetmod.png)
