@@ -83,13 +83,17 @@ def main():
     # Get parameters from arguments
     parser = argparse.ArgumentParser(description='Model training')
     parser.add_argument('-c', '--config_path', type=str,
-                        default=None, help='Configuration file')
+                        default=None,
+                        help='Configuration file')
     parser.add_argument('-e', '--exp_name', type=str,
-                        default=None, help='Name of the experiment')
+                        default=None,
+                        help='Name of the experiment')
     parser.add_argument('-s', '--shared_path', type=str,
-                        default='/data', help='Path to shared data folder')
+                        default='/data/module5',
+                        help='Path to shared data folder')
     parser.add_argument('-l', '--local_path', type=str,
-                        default='/datatmp', help='Path to local data folder')
+                        default='/home/master/tmp',
+                        help='Path to local data folder')
 
     arguments = parser.parse_args()
 
