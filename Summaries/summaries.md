@@ -9,6 +9,11 @@ The architecture could be simply expressed as a stack of 3x3 conv layers with in
 
 The main key of this network is to use only 3x3 filters. In order to keep the same receptive field as bigger filters, they stack several filters, increasing the receptive field each step. This have various consequences. First of all and most obvious is that stacking filters the network goes deeper. Not only that, each filter adds a non-linearity which makes the decision function more discriminative. Secondly, the number of parameters needed to express this function is less. As an example, to achieve the same receptive field of a 7x7 filter an stack of three 3x3 filters is needed, but the number of parameters are only the 19%. To avoid losing spatial resolution a padding of 1 is used in each conv. layer.
 
+In order to train the network, the authors proposed two methods to initialize its weights. At first, the weights were intialyzed by training a shallower net and transferring the weights to the larger net. Intuitively it appears to be a good solution as the train is being trained sequentially. As a second attempt to train the network, they used Glorot weight initialization. By using this procedure, they achieved similar results with a less training time than training a smaller network. When training, they also explored the use of basic data augmentation to generate artificial images and increase the amount of images on the image set. The main techniques consisted in random cropping, scaling, horizontal flipping and RGB shifting.
+
+The final network outperformed the accuracy of networks proposed on previous years and was competitive with respect to GoogLeNet, 2014 image classification winner. As a conclusion to this experiments, they found out that by increasing the depth of the neural network, the accuracy could be also increased (if the network is trained properly).
+
+
 
 [VGG16 Architecture](vgg16.png)
 <!-- [<img src="vgg16.png" alt="VGG16 architecture" height="400">](vgg16.png) -->
