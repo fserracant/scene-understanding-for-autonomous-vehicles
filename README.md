@@ -52,6 +52,12 @@ You can find their explanation as well as more environment variables in
 This project is using [Keras][keras] as a high-level neural networks API running
 on top of [Tensorflow][tf] library.
 
+## Run a training in the server
+
+```bash
+cd code
+CUDA_VISIBLE_DEVICES=0 python train.py -c config/tt100k_classif.py -e test -l /home/master/tmp -s /data/module5/
+```
 
 ## Authors
 - Ferran Pérez              - _dev_ - [fperezgamonal][ferran-github] - [contact](mailto:ferran.perezg@e-campus.uab.cat)
