@@ -4,7 +4,7 @@ import os
 from keras.callbacks import (CSVLogger, EarlyStopping, LearningRateScheduler,
                              ModelCheckpoint, TensorBoard)
 
-from callbacks.callbacks import (History_plot, Jacc_new, LRDecayScheduler,
+from callbacks import (History_plot, Jacc_new, LRDecayScheduler,
                                  LearningRateSchedulerBatch, Save_results,
                                  Scheduler)
 
