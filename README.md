@@ -1,6 +1,6 @@
 # Scene understading for autonomous vehicles - Team 08: CoRN
 This project is done in the framework of the Master in Computer Vision by
-Universitat Autònoma de Barcelona (UAB) in the module _M5: Visual recognition_. 
+Universitat Autònoma de Barcelona (UAB) in the module _M5: Visual recognition_.
 
 Abstract: "In this project we employ state-of-the-art Deep Learning algorithms for recognition, detection and segmentation tasks which are key to create a system which understands traffic scenes correctly and makes the right decision while autonomously driving".
 
@@ -58,6 +58,14 @@ on top of [Tensorflow][tf] library.
 cd code
 CUDA_VISIBLE_DEVICES=0 python train.py -c config/tt100k_classif.py -e test -l /home/master/tmp -s /data/module5/
 ```
+
+## Run in local
+
+```bash
+python code/train.py -c code/config/tt100k_classif.py -e test -l tmp -s data
+```
+
+
 
 ## Authors
 - Ferran Pérez              - _dev_ - [fperezgamonal][ferran-github] - [contact](mailto:ferran.perezg@e-campus.uab.cat)
