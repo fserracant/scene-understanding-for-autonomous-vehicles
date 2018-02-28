@@ -57,17 +57,6 @@ class Configuration():
                                                    shared_dataset_path,
                                                    cf.problem_type,
                                                    'config_dataset2')
-        
-        #Obtain number of images on train, validation and test sets
-        cf.images_train = 0
-        cf.images_valid = 0
-        cf.images_test = 0
-        for root, dirs, files in os.walk(cf.dataset.path_train_img):
-            cf.images_train += len(files)
-        for root, dirs, files in os.walk(cf.dataset.path_valid_img):
-            cf.images_train += len(files)
-        for root, dirs, files in os.walk(cf.dataset.path_test_img):
-            cf.images_train += len(files)
 
 
         # If in Debug mode use few images
