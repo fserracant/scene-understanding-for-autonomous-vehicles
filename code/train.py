@@ -92,7 +92,7 @@ def main():
                         default='/data/module5',
                         help='Path to shared data folder')
     parser.add_argument('-l', '--local_path', type=str,
-                        default='/home/master/tmp',
+                        default='/home/master/sufav/results',
                         help='Path to local data folder')
 
     arguments = parser.parse_args()
@@ -110,8 +110,9 @@ def main():
     dataset_path = os.path.join(local_path, 'Datasets')
     shared_dataset_path = os.path.join(shared_path, 'Datasets')
     experiments_path = os.path.join(local_path, getuser(), 'Experiments')
-    shared_experiments_path = os.path.join(shared_path, getuser(),
-                                           'Experiments')
+    # Note: this should not be used
+    shared_experiments_path = os.path.join(shared_path, getuser(), 'Experiments')
+
     usr_path = os.path.join('/home/', getuser())
 
     # Load configuration files

@@ -37,8 +37,7 @@ class Configuration():
 
         # Create output folders
         cf.savepath = os.path.join(experiments_path, cf.dataset_name, cf.exp_name)
-        cf.final_savepath = os.path.join(shared_experiments_path, cf.dataset_name,
-                                         cf.exp_name)
+        cf.final_savepath = os.path.join(experiments_path, cf.dataset_name, cf.exp_name, 'final')
         cf.log_file = os.path.join(cf.savepath, "logfile.log")
         if not os.path.exists(cf.savepath):
             os.makedirs(cf.savepath)

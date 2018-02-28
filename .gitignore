@@ -1,5 +1,7 @@
 .idea/
 .venv/
+results/
+screenlog.*
 
 # Compiled Python
 *.pyc
