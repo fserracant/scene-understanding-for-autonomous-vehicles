@@ -1,6 +1,7 @@
 .idea/
 .venv/
 results/
+final_results/
 screenlog.*
 
 # Compiled Python
