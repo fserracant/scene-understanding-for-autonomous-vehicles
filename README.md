@@ -67,7 +67,7 @@ python code/train.py -c code/config/tt100k_classif.py -e test -l tmp -s data
 
 ## Authors
 - Ferran Pérez              - _dev_ - [fperezgamonal][ferran-github] - [contact](mailto:ferran.perezg@e-campus.uab.cat)
-- Joan Francesc Serracant   - _dev_ - [fserracan][cesc-github] -  [contact](mailto:joanfrancesc.serracant@e-campus.uab.cat)
+- Joan Francesc Serracant   - _dev_ - [fserracant][cesc-github] -  [contact](mailto:joanfrancesc.serracant@e-campus.uab.cat)
 - Jonatan Poveda            - _dev_ - [jonpoveda][jonatan-github] - [contact](mailto:jonatan.poveda@e-campus.uab.cat)
 - Martí Cobos               - _dev_ - [marticobos][marti-github] - [contact](mailto:marti.cobos@e-campus.uab.cat)
 
