@@ -94,6 +94,9 @@ class Callbacks_Factory():
             print('   Tensorboard')
             if cf.TensorBoard_logs_folder is None:
                 log_dir = os.path.join(cf.usr_path, 'TensorBoardLogs')
+	    else:
+		log_dir = cf.TensorBoard_logs_folder
+
             if not os.path.exists(log_dir):
                 os.makedirs(log_dir)
             cb += [TensorBoard(log_dir=log_dir,

@@ -14,7 +14,7 @@ weights_file                 = 'weights.hdf5'  # Training weight file name
 
 # Parameters
 train_model                  = True            # Train the model
-test_model                   = True           # Test the model
+test_model                   = False           # Test the model
 pred_model                   = False          # Predict using the model
 
 # Debug
@@ -93,7 +93,7 @@ TensorBoard_enabled          = True             # Enable the Callback
 TensorBoard_histogram_freq   = 0                # Frequency (in epochs) at which to compute activation histograms for the layers of the model. If set to 0, histograms won't be computed.
 TensorBoard_write_graph      = True             # Whether to visualize the graph in Tensorboard. The log file can become quite large when write_graph is set to True.
 TensorBoard_write_images     = False            # Whether to write model weights to visualize as image in Tensorboard.
-TensorBoard_logs_folder      = "~/sufav/results/taskb_KITTI_vgg/log_tensorboard/"             #
+TensorBoard_logs_folder      = '~/sufav/results/master/Experiments/KITTI/logs_tensorboard/'              #
 
 # Data augmentation for training and normalization
 norm_imageNet_preprocess           = False     # Normalize following imagenet procedure
