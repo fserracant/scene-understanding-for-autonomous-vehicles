@@ -4,6 +4,7 @@ results/
 final_results/
 screenlog.*
 *.hdf5
+tmp/
 
 # Compiled Python
 *.pyc
