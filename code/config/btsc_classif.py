@@ -10,7 +10,7 @@ freeze_layers_from           = 19              # Freeze layers from 0 to this la
 show_model                   = True            # Show the architecture layers
 load_imageNet                = False            # Load Imagenet weights and normalize following imagenet procedure
 load_pretrained              = True            # Load a pretrained model for doing finetuning
-weights_file                 = '~/sufav/results/master/Experiments/TT100K_trafficSigns/030217000_task3_resize_64/weights.hdf5'  # Training weight file name
+weights_file                 = '/home/master/sufav/results/master/Experiments/TT100K_trafficSigns/030217000_task3_resize_64/weights.hdf5'  # Training weight file name
 
 # Parameters
 train_model                  = True            # Train the model
