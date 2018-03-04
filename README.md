@@ -65,6 +65,13 @@ CUDA_VISIBLE_DEVICES=0 python train.py -c config/tt100k_classif.py -e test -l /h
 python code/train.py -c code/config/tt100k_classif.py -e test -l tmp -s data
 ```
 
+## Pre-trained weights
+
+<!-- TODO: add their configs! -->
+You can find some the weight from our experiements in this [Google 
+Drive][weights].
+
+
 ## Authors
 - Ferran Pérez              - _dev_ - [fperezgamonal][ferran-github] - [contact](mailto:ferran.perezg@e-campus.uab.cat)
 - Joan Francesc Serracant   - _dev_ - [fserracant][cesc-github] -  [contact](mailto:joanfrancesc.serracant@e-campus.uab.cat)
@@ -93,3 +100,5 @@ This project is licensed under the GPLv3 License - see the [LICENSE.md](LICENSE.
 
 [overleaf]: https://www.overleaf.com/read/rgbqdstbtmqz
 [gdrive]: https://docs.google.com/presentation/d/1fmX2s14--DSvh6eTJD6e-rf5zkyVoq6O_012BAI6jJs/edit?usp=sharing
+[weights]: https://drive.google.com/drive/folders/1mKUBiKQIp09UwKLrqy3C4-iG7XRnd7zZ?usp=sharing
+
