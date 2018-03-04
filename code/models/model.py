@@ -7,6 +7,10 @@ from keras.engine.training import GeneratorEnqueuer
 from tools.save_images import save_img3
 from tools.yolo_utils import *
 from keras.preprocessing import image
+
+from sklearn.metrics import confusion_matrix
+import matplotlib.pyplot as plt
+
 """
 Interface for normal (one net) models and adversarial models. Objects of
 classes derived from Model are returned by method make() of the Model_Factory
@@ -240,3 +244,38 @@ class One_Net_Model(Model):
                 # Compute jaccard mean
                 jacc_mean = np.nanmean(jacc_percl)
                 print('   Jaccard mean: {}'.format(jacc_mean))
+                
+                
+    # Test the model
+    def computeCM(self, test_gen):
+        print('\n > Computing confusion matrix...')
+
+        # Get ground truth
+        ground_truth = test_gen.classes
+    
+        # Predict test images
+        predictions_raw = self.model.predict_generator(test_gen, 
+                                                        steps=self.cf.dataset.n_images_test//self.cf.batch_size_test,
+                                                         max_queue_size=10,
+                                                         workers=1)
+        predictions = []
+        for prediction in predictions_raw:
+            predictions.append(np.argmax(prediction))
+
+        predictions = predictions[0:len(ground_truth)]
+        
+        # Compute confusion matrix
+        cm =confusion_matrix(ground_truth, predictions)
+        
+        # Print and plot confusion matrix
+        print(cm)
+        plt.matshow(cm)
+        plt.title('Confusion matrix')
+        plt.colorbar()
+        plt.ylabel('True label')
+        plt.xlabel('Predicted label')
+        plt.show()
+        plt.savefig(os.path.join(self.cf.savepath, 'cm.png'))
+        
+    
+        return
