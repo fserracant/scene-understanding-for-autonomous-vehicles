@@ -3,7 +3,7 @@
 results/
 final_results/
 screenlog.*
-code/weights/
+*.hdf5
 
 # Compiled Python
 *.pyc
