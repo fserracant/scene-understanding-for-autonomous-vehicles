@@ -9,5 +9,7 @@ Each image is split into an S x S grid and each cell predicts B bounding boxes a
 
 The network training is performed using a pretrained net based on ImageNet. Several techniques are used to ease the training: use of leaky relu activation function, MSE loss function, dropout, learning rate momentum and decay, it is also decreased along epochs. Once the network has been trained, inference is done by passing the image through the net and applying non-maximal suppression to merge duplicate detections, small objects are detected on one cell and bigger ones occupy more than one cell.
 
+[YOLO Scheme](Yolo.png)
+
 ## SSD
 [SSD: Single Shot MultiBox Detector](https://arxiv.org/pdf/1512.02325.pdf)
