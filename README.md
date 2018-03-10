@@ -72,7 +72,7 @@ You can find some the weight from our experiements in this [Google
 Drive][weights].
 
 ## The progress at a glance
-### Week 1/2
+### Week 1/2: object recognition
 #### Summary
 These two weeks have been devoted to the study of state-of-the-art architectures for object recognition. In particular, we have evaluated the vainilla VGG16 architecture weights to recognise traffic signals from the TT100K dataset. We compared the performance between cropped and resized images as well as the adaption of the network to another domain (BelgiumTS). Moreover, we have trained the VGG16 both from scratch and with pre-trained weights from ImageNet on the KITTI dataset and analysed their results. Finally, we have implemented the Squeeze and Excitation Network (added to [models](code/models) and compared the vainilla ResNet50 results with its SE counterpart, both with fine-tuning and from scratch. Each dataset has been analysed to help us draw meaningful conclusions from the results obtained. Check our report and presentation for more details.
 #### Results
@@ -84,14 +84,14 @@ These two weeks have been devoted to the study of state-of-the-art architectures
 | VGG16(KITTI)*  | 0.888         | 0.904         |  -----        |* + crop       | 0.945         | 0.836         | 0.866        |
 | * w. imagenet  | 0.978         | 0.975         |  -----        |* fine-tune BTS| 0.789         | 0.767         | 0.767        |
 
-### Week 3/4
+### Week 3/4: object detection
 #### Summary
 These two weeks have been devoted to the study and implementation of state-of-the-art architectures for object detection. During week 3, we have tested the vainilla YOLO (v1) architecture with the TT100K dataset (for detection, without crops of only signals) and assessed the overffiting and unbalancing problems encountered. We have disscussed about the source/s behind this problem and proposed some possible solutions (data augmentation, dropout, etc.).
 Later, on week 4, ...
 See our report and presentation for more details.
 #### Results
 
-### Week 5/6
+### Week 5/6: object segmentation
 #### Summary
 
 #### Results
