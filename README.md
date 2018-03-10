@@ -6,7 +6,18 @@ Abstract: "In this project we employ state-of-the-art Deep Learning algorithms f
 
 For more information, check our report on [Overleaf][overleaf] or our presentations on [Google Drive][gdrive]. You can find summaries for some Image Classification papers on the file [_summaries_](Summaries/summaries.md). Additionally, for a quick look at what we have done in the project so far, head over to the ['The progress at a glance section'.](#the-progress-at-a-glance)
 ___
-
+## Table of contents
+* [Getting Started](#getting-started)
+  * [Prerequisites](#prerequisites)
+  * [Installing](#installing)
+* [Built with](#built-with)
+* [Run a training in the server](#run-a-training-in-the-server)
+* [Run in local](#run-in-local)
+* [Pre-trained weights](#pre-trained-weights)
+* [The progress at a glance](#the-progress-at-a-glance)
+* [Authors](#authors)
+* [License](#license)
+___
 ## Getting Started
 
 ### Prerequisites
