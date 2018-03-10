@@ -13,3 +13,5 @@ The network training is performed using a pretrained net based on ImageNet. Seve
 
 ## SSD
 [SSD: Single Shot MultiBox Detector](https://arxiv.org/pdf/1512.02325.pdf)
+
+[SSD architecture compared to YOLO](SSD.png)
