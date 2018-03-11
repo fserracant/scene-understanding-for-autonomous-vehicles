@@ -58,8 +58,8 @@ def ssd_build_gt_batch(batch_gt,image_shape,num_classes,num_priors=5):
 
 def ssd_postprocess_net_out(net_out, anchors, labels, threshold, nms_threshold):
     C = len(labels) 
-        B = len(anchors)
-        net_out = np.transpose(net_out, (1,2,0))
+    B = len(anchors)
+    net_out = np.transpose(net_out, (1,2,0))
     H,W = net_out.shape[:2]
     net_out = net_out.reshape([H, W, B, -1])
 
