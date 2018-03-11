@@ -532,10 +532,10 @@ def SSDMetrics(input_shape=(3,300,300),num_classes=45,priors=[[0.25,0.25], [0.5,
   def avg_recall(y_true, y_pred, name=None):
       print "y_true: ", y_true
       print "y_pred: ", y_pred
-      
-      net_out = tf.transpose(y_pred, perm=[0, 2, 3, 1])
 
-      _,h,w,c = net_out.get_shape().as_list()
+      net_out = tf.transpose(y_pred, perm=[0, 2, 1])
+
+      h,w,c = net_out.get_shape().as_list()
       b = len(priors)
       anchors = np.array(priors)
 
