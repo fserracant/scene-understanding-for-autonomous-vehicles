@@ -57,41 +57,8 @@ def ssd_build_gt_batch(batch_gt,image_shape,num_classes,num_priors=5):
     return batch_y
 
 def ssd_postprocess_net_out(net_out, anchors, labels, threshold, nms_threshold):
-    C = len(labels) 
-    B = len(anchors)
-    net_out = np.transpose(net_out, (1,2,0))
-    H,W = net_out.shape[:2]
-    net_out = net_out.reshape([H, W, B, -1])
-
+    #TODO: write code here
     boxes = list()
-    for row in range(H):
-        for col in range(W):
-            for b in range(B):
-                bx = BoundBox(C)
-                bx.x, bx.y, bx.w, bx.h, bx.c = net_out[row, col, b, :5]
-                bx.c = expit(bx.c)
-                bx.x = (col + expit(bx.x)) / W
-                bx.y = (row + expit(bx.y)) / H
-                bx.w = np.exp(bx.w) * anchors[b][0] / W
-                bx.h = np.exp(bx.h) * anchors[b][1] / H
-                classes = net_out[row, col, b, 5:]
-                bx.probs = _softmax(classes) * bx.c
-                bx.probs *= bx.probs > threshold
-                boxes.append(bx)
-
-    # non max suppress boxes
-    for c in range(C):
-        for i in range(len(boxes)):
-            boxes[i].class_num = c
-        boxes = sorted(boxes, key = prob_compare)
-        for i in range(len(boxes)):
-            boxi = boxes[i]
-            if boxi.probs[c] == 0: continue
-            for j in range(i + 1, len(boxes)):
-                boxj = boxes[j]
-                if box_iou(boxi, boxj) >= nms_threshold:
-                    boxes[j].probs[c] = 0.
-
     return boxes
 
 def ssd_draw_detections(boxes, im, anchors, labels, threshold, nms_threshold):
