@@ -368,6 +368,7 @@ class ImageDataGenerator(object):
                  warp_grid_size=3,
                  dim_ordering='default',
                  class_mode='categorical',
+                 model_name=None,
                  rgb_mean=None,
                  rgb_std=None,
                  crop_size=None,
@@ -425,6 +426,7 @@ class ImageDataGenerator(object):
                              '; expected one of "categorical", '
                              '"binary", "sparse", "segmentation", "detection" or None.')
         self.class_mode = class_mode
+        self.model_name = model_name
         self.has_gt_image = True if self.class_mode == 'segmentation' else False
 
     def flow(self, X, y=None, batch_size=32, shuffle=True, seed=None,
@@ -452,7 +454,7 @@ class ImageDataGenerator(object):
             batch_size=batch_size, shuffle=shuffle, seed=seed,
             gt_directory=gt_directory,
             save_to_dir=save_to_dir, save_prefix=save_prefix,
-            save_format=save_format)
+            save_format=save_format, model_name=self.model_name)
 
     def flow_from_directory2(self, directory,
                              resize=None, target_size=(256, 256),
@@ -1137,7 +1139,7 @@ class DirectoryIterator(Iterator):
                  dim_ordering='default',
                  classes=None, class_mode='categorical',
                  batch_size=32, shuffle=True, seed=None, gt_directory=None,
-                 save_to_dir=None, save_prefix='', save_format='jpeg'):
+                 save_to_dir=None, save_prefix='', save_format='jpeg', model_name=None):
         # Check dim order
         if dim_ordering == 'default':
             dim_ordering = K.image_dim_ordering()
@@ -1185,6 +1187,7 @@ class DirectoryIterator(Iterator):
                              '; expected one of "categorical", '
                              '"binary", "sparse", "segmentation", "detection" or None.')
         self.class_mode = class_mode
+        self.model_name = model_name
         self.has_gt_image = True if self.class_mode == 'segmentation' else False
 
         # Check class names
