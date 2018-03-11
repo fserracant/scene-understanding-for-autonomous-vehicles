@@ -109,14 +109,8 @@ class Configuration():
             # TODO detection : different nets may have other metrics
             cf.train_metrics = ['loss', 'avg_recall', 'avg_iou']
             cf.valid_metrics = ['val_loss', 'val_avg_recall', 'val_avg_iou']
-
-            if cf.model_name == "yolo":
-                cf.best_metric = 'val_avg_recall'
-                cf.best_type = 'max'
-            elif cf.model_name == 'ssd300':
-                cf.best_metric = 'val_loss'
-                cf.best_type = 'min'
-
+            cf.best_metric = 'val_avg_recall'
+            cf.best_type = 'max'
         else:
             cf.train_metrics = ['loss', 'acc']
             cf.valid_metrics = ['val_loss', 'val_acc']
