@@ -96,15 +96,15 @@ def ssd_postprocess_net_out(net_out, anchors, labels, threshold, nms_threshold):
 
 def ssd_draw_detections(boxes, im, anchors, labels, threshold, nms_threshold):
 
-        def get_color(c,x,max):
-          colors = ( (1,0,1), (0,0,1),(0,1,1),(0,1,0),(1,1,0),(1,0,0) )
-          ratio = (float(x)/max)*5
-          i = np.floor(ratio)
-          j = np.ceil(ratio)
-          ratio -= i
-          r = (1-ratio) * colors[int(i)][int(c)] + ratio*colors[int(j)][int(c)]
-          return r*255
-
+    def get_color(c,x,max):
+        colors = ( (1,0,1), (0,0,1),(0,1,1),(0,1,0),(1,1,0),(1,0,0) )
+        ratio = (float(x)/max)*5
+        i = np.floor(ratio)
+        j = np.ceil(ratio)
+        ratio -= i
+        r = (1-ratio) * colors[int(i)][int(c)] + ratio*colors[int(j)][int(c)]
+        return r*255
+    
     if type(im) is not np.ndarray:
         imgcv = cv2.imread(im)
     else: imgcv = im
@@ -125,19 +125,19 @@ def ssd_draw_detections(boxes, im, anchors, labels, threshold, nms_threshold):
             if bot   > h - 1:   bot = h - 1
             thick = int((h+w)/300)
             mess = '{}'.format(label)
-                        offset = max_indx*123457 % len(labels)
-                        color = (get_color(2,offset,len(labels)),
-                                 get_color(1,offset,len(labels)),
-                                 get_color(0,offset,len(labels)))
+            offset = max_indx*123457 % len(labels)
+            color = (get_color(2,offset,len(labels)),
+                     get_color(1,offset,len(labels)),
+                     get_color(0,offset,len(labels)))
             cv2.rectangle(imgcv,
                 (left, top), (right, bot),
                 color, thick)
-                        font = cv2.FONT_HERSHEY_SIMPLEX
-                        scale = 0.65
-                        thickness = 1
-                        size=cv2.getTextSize(mess, font, scale, thickness)
-                        cv2.rectangle(im, (left-2,top-size[0][1]-4), (left+size[0][0]+4,top), color, -1)
-                        cv2.putText(im, mess, (left+2,top-2), font, scale, (0,0,0), thickness, cv2.LINE_AA)
+            font = cv2.FONT_HERSHEY_SIMPLEX
+            scale = 0.65
+            thickness = 1
+            size=cv2.getTextSize(mess, font, scale, thickness)
+            cv2.rectangle(im, (left-2,top-size[0][1]-4), (left+size[0][0]+4,top), color, -1)
+            cv2.putText(im, mess, (left+2,top-2), font, scale, (0,0,0), thickness, cv2.LINE_AA)
     return imgcv
 '''
 Includes:
