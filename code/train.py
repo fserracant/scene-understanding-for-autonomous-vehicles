@@ -133,4 +133,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-        if (valid_gen != None): model.test(valid_gen)
+        #if (valid_gen != None): model.test(valid_gen)

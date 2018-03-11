@@ -1,7 +1,7 @@
 import os
 
 # Keras imports
-from metrics.metrics import jaccard_coef, cce_flatt, IoU, YOLOLoss, YOLOMetrics
+from metrics.metrics import jaccard_coef, cce_flatt, IoU, YOLOLoss, YOLOMetrics, MultiboxLoss, SSDLoss
 from keras import backend as K
 from keras.utils.vis_utils import plot_model
 
@@ -15,6 +15,7 @@ from models.vgg import build_vgg
 
 # Detection models
 from models.yolo import build_yolo
+from models.ssd import build_ssd300
 
 # Segmentation models
 from models.fcn8 import build_fcn8
@@ -49,8 +50,12 @@ class Model_Factory():
                         cf.target_size_train[0],
                         cf.target_size_train[1])
             # TODO detection : check model, different detection nets may have different losses and metrics
-            loss = YOLOLoss(in_shape, cf.dataset.n_classes, cf.dataset.priors)
-            metrics = [YOLOMetrics(in_shape, cf.dataset.n_classes, cf.dataset.priors,name='avg_recall'),YOLOMetrics(in_shape, cf.dataset.n_classes, cf.dataset.priors,name='avg_iou')]
+            if cf.model_name == 'yolo':
+              loss = YOLOLoss(in_shape, cf.dataset.n_classes, cf.dataset.priors)
+              metrics = [YOLOMetrics(in_shape, cf.dataset.n_classes, cf.dataset.priors,name='avg_recall'),YOLOMetrics(in_shape, cf.dataset.n_classes, cf.dataset.priors,name='avg_iou')]
+            elif cf.model_name == 'ssd300':
+              loss = SSDLoss(neg_pos_ratio=3, n_neg_min=0, alpha=1.0).compute_loss
+              metrics = ['accuracy']
         elif cf.dataset.class_mode == 'segmentation':
             if K.image_dim_ordering() == 'th':
                 if variable_input_size:
@@ -79,7 +84,7 @@ class Model_Factory():
         if cf.model_name in ['lenet', 'alexNet', 'vgg16', 'vgg19', 'resnet50',
                              'InceptionV3', 'fcn8', 'unet', 'segnet',
                              'segnet_basic', 'resnetFCN', 'yolo', 'tiny-yolo',
-                             'senet', 'resnet']:
+                             'senet', 'resnet', 'ssd300']:
             if optimizer is None:
                 raise ValueError('optimizer can not be None')
 
@@ -167,6 +172,11 @@ class Model_Factory():
         elif cf.model_name == 'resnet':
             model = build_SEResNet50(in_shape, cf.dataset.n_classes, cf.weight_decay,
                               freeze_layers_from=cf.freeze_layers_from, SE = False)
+        elif cf.model_name == 'ssd300':
+            model = build_ssd300(in_shape, cf.dataset.n_classes,
+                                 cf.dataset.n_priors,
+                                 load_pretrained=cf.load_pretrained,
+                                 freeze_layers_from=cf.freeze_layers_from)
         else:
             raise ValueError('Unknown model')
 
