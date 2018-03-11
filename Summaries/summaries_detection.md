@@ -9,7 +9,7 @@ Each image is split into an *SxS* grid and each cell predicts *B*  bounding boxe
 
 The training is performed using a pre-trained net based on *ImageNet*. Several techniques are used to ease the training: the use of leaky *ReLU* activation function, *MSE* loss function, dropout, decreasing manually the learning rate momentum and decay along epochs. Once the network has been trained, inference is done by passing the image through the net and applying non-maximal suppression to merge duplicate detections, since small objects are predicted on one cell and bigger ones on multiple ones.
 
-[YOLO Scheme](Yolo.png)
+![YOLO Scheme](yolo.png)
 
 ## SSD
 [SSD: Single Shot MultiBox Detector](https://arxiv.org/pdf/1512.02325.pdf)
@@ -20,4 +20,4 @@ The main architecture of SSD is based on the feed-forward convolutional network 
 
 Because of this adaptation, the training procedure is quite tricky and care must be taken to train this network. In order to balance the ratio between positive and negative training examples, *Hard Negative Mining by selection* (limiting the negative-positive ratio to 3:1) has been used during the training stage . The authors also proposed data augmentation, getting patches near the bounding boxes, to improve the accuracy in small objects. This architecture achieved an accuracy similar to *Faster R-CNN* and the speed of *YOLO*'s architecture.
 
-[SSD architecture compared to YOLO](SSD.png)
+![SSD architecture compared to YOLO](ssd.png)
