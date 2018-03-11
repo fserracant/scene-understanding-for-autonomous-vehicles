@@ -6,6 +6,7 @@ from keras.engine.training import GeneratorEnqueuer
 #from model_factory import Model_Factory
 from tools.save_images import save_img3
 from tools.yolo_utils import *
+from tools.ssd_utils import *
 from keras.preprocessing import image
 
 from sklearn.metrics import confusion_matrix
@@ -182,7 +183,10 @@ class One_Net_Model(Model):
                         net_out = self.model.predict(inputs, batch_size = self.cf.batch_size_test, verbose = 0)
                         # Find correct detections (per image)
                         for i, img_path in enumerate(img_paths):
-                            boxes_pred = yolo_postprocess_net_out(net_out[i], priors, classes, detection_threshold, nms_threshold)
+                            if self.cf.model_name == 'yolo':
+                                boxes_pred = yolo_postprocess_net_out(net_out[i], priors, classes, detection_threshold, nms_threshold)
+                            elif self.cf.model_name == 'ssd300':
+                                boxes_pred = ssd_postprocess_net_out(net_out[i], priors, classes, detection_threshold, nms_threshold)
                             boxes_true = []
                             label_path = img_path.replace('jpg','txt')
                             gt = np.loadtxt(label_path)
@@ -209,7 +213,10 @@ class One_Net_Model(Model):
                                         break
                             # You can visualize/save per image results with this:
                             #im = cv2.imread(img_path)
-                            #im = yolo_draw_detections(boxes_pred, im, priors, classes, detection_threshold, nms_threshold)
+                            #if self.cf.model_name == 'yolo':
+                            #   im = yolo_draw_detections(boxes_pred, im, priors, classes, detection_threshold, nms_threshold)
+                            #elif self.cf.model_name == 'ssd300':
+                            #   im = ssd_draw_detections(boxes_pred, im, priors, classes, detection_threshold, nms_threshold)
                             #cv2.imshow('', im)
                             #cv2.waitKey(0)
                         inputs = []
