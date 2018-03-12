@@ -54,7 +54,7 @@ class Model_Factory():
               loss = YOLOLoss(in_shape, cf.dataset.n_classes, cf.dataset.priors)
               metrics = [YOLOMetrics(in_shape, cf.dataset.n_classes, cf.dataset.priors,name='avg_recall'),YOLOMetrics(in_shape, cf.dataset.n_classes, cf.dataset.priors,name='avg_iou')]
             elif cf.model_name == 'ssd300':
-              loss = SSDLoss(neg_pos_ratio=3, n_neg_min=0, alpha=1.0).compute_loss
+              loss = SSDLoss()
               metrics = ['accuracy'] #[SSDMetrics(in_shape, cf.dataset.n_classes, cf.dataset.priors,name='avg_recall'),SSDMetrics(in_shape, cf.dataset.n_classes, cf.dataset.priors,name='avg_iou')]
         elif cf.dataset.class_mode == 'segmentation':
             if K.image_dim_ordering() == 'th':

@@ -57,6 +57,7 @@ def ssd_build_gt_batch(batch_gt,image_shape,num_classes,num_priors=5):
     return batch_y
 
 def ssd_postprocess_net_out(net_out, anchors, labels, threshold, nms_threshold):
+    print net_out
     #TODO: write code here
     boxes = list()
     return boxes
