@@ -3,6 +3,7 @@ import numpy as np
 import warnings
 import math
 import cv2
+from yolo_utils import BoundBox
 
 """
     SSD utitlities
@@ -56,10 +57,40 @@ def ssd_build_gt_batch(batch_gt,image_shape,num_classes,num_priors=5):
 
     return batch_y
 
-def ssd_postprocess_net_out(net_out, anchors, labels, threshold, nms_threshold):
-    print net_out
-    #TODO: write code here
+def ssd_postprocess_net_out(net_out, anchors, labels, threshold, nms_threshold, img_shape):
+    np.set_printoptions(threshold='nan')
+    np.set_printoptions(precision=2, suppress=True, linewidth=90)
+    print("Predicted boxes:\n")
+    print('    class    conf  xmin    ymin    xmax    ymax')
+    print net_out 
+
+    C = len(labels) 
+    B = len(anchors)
+    #net_out = np.transpose(net_out, (1,2,0))
+    #net_out = net_out.reshape([H, W, B, -1])
+
     boxes = list()
+    for b in net_out:
+    	bx = BoundBox(C)
+    	bx.c, _, bx.x, bx.y, bx.w, bx.h = b
+    	boxes.append(bx)
+
+
+    # non max suppress boxes
+    '''
+    for c in range(C):
+	for i in range(len(boxes)):
+   	    boxes[i].class_num = c
+	    boxes = sorted(boxes, key = prob_compare)
+	    for i in range(len(boxes)):
+		boxi = boxes[i]
+	        if boxi.probs[c] == 0: continue
+		for j in range(i + 1, len(boxes)):
+		    boxj = boxes[j]
+		    if box_iou(boxi, boxj) >= nms_threshold:
+		        boxes[j].probs[c] = 0.
+    '''
+
     return boxes
 
 def ssd_draw_detections(boxes, im, anchors, labels, threshold, nms_threshold):
@@ -406,7 +437,6 @@ def decode_y(y_pred,
         raise ValueError("If relative box coordinates are supposed to be converted to absolute coordinates, the decoder needs the image size in order to decode the predictions, but `img_height == {}` and `img_width == {}`".format(img_height, img_width))
 
     # 1: Convert the box coordinates from the predicted anchor box offsets to predicted absolute coordinates
-
     y_pred_decoded_raw = np.copy(y_pred[:,:,:-8]) # Slice out the classes and the four offsets, throw away the anchor coordinates and variances, resulting in a tensor of shape `[batch, n_boxes, n_classes + 4 coordinates]`
 
     if input_coords == 'centroids':

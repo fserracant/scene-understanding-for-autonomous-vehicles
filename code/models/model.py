@@ -12,6 +12,9 @@ from keras.preprocessing import image
 from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
 
+from layers.ssd_layers import DecodeDetections
+import keras as K
+
 """
 Interface for normal (one net) models and adversarial models. Objects of
 classes derived from Model are returned by method make() of the Model_Factory
@@ -142,6 +145,17 @@ class One_Net_Model(Model):
                 nms_threshold       = 0.2 # Non Maximum Suppression threshold
                 # IMPORTANT: the values of these two params will affect the final performance of the netwrok
                 #            you are allowed to find their optimal values in the validation/train sets
+	 
+	        if self.cf.model_name == 'ssd300':
+                    x = self.model.layers[-1].output
+		    x = DecodeDetections(confidence_thresh=detection_threshold,
+                                               #iou_threshold=nms_threshold,a
+					       normalize_coords=True,
+                                               img_height=self.cf.target_size_test[0],
+                                               img_width=self.cf.target_size_test[1],
+                                               name='decoded_predictions')(x)
+	            self.model = K.Model(input=self.model.inputs,output=x)
+
 
                 if dataset_name == 'TT100K_detection':
                     classes = ['i2','i4','i5','il100','il60','il80','io','ip','p10','p11','p12','p19','p23','p26','p27','p3','p5','p6','pg','ph4','ph4.5','ph5','pl100','pl120','pl20','pl30','pl40','pl5','pl50','pl60','pl70','pl80','pm20','pm30','pm55','pn','pne','po','pr40','w13','w32','w55','w57','w59','wo']
@@ -186,7 +200,7 @@ class One_Net_Model(Model):
                             if self.cf.model_name == 'yolo':
                                 boxes_pred = yolo_postprocess_net_out(net_out[i], priors, classes, detection_threshold, nms_threshold)
                             elif self.cf.model_name == 'ssd300':
-                                boxes_pred = ssd_postprocess_net_out(net_out[i], priors, classes, detection_threshold, nms_threshold)
+                                boxes_pred = ssd_postprocess_net_out(net_out[i], priors, classes, detection_threshold, nms_threshold, (input_shape[1],input_shape[2]))
                             boxes_true = []
                             label_path = img_path.replace('jpg','txt')
                             gt = np.loadtxt(label_path)

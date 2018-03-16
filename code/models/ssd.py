@@ -94,7 +94,7 @@ def SSD300_plf(image_size,
             limit_boxes=False,
             variances=[0.1, 0.1, 0.2, 0.2],
             coords='centroids',
-            normalize_coords=False,
+            normalize_coords=True,
             subtract_mean=[123, 117, 104],
             divide_by_stddev=None,
             swap_channels=True,
@@ -462,7 +462,7 @@ def SSD300_plf(image_size,
     if mode == 'training':
         model = Model(inputs=x, outputs=predictions)
     elif mode == 'inference':
-        decoded_predictions = DecodeDetections(confidence_thresh=confidence_thresh,
+    	decoded_predictions = DecodeDetections(confidence_thresh=confidence_thresh,
                                                iou_threshold=iou_threshold,
                                                top_k=top_k,
                                                nms_max_output_size=nms_max_output_size,
@@ -471,7 +471,7 @@ def SSD300_plf(image_size,
                                                img_height=img_height,
                                                img_width=img_width,
                                                name='decoded_predictions')(predictions)
-        model = Model(inputs=x, outputs=decoded_predictions)
+    	model = Model(inputs=x, outputs=decoded_predictions)
     elif mode == 'inference_fast':
         decoded_predictions = DecodeDetections2(confidence_thresh=confidence_thresh,
                                                 iou_threshold=iou_threshold,
