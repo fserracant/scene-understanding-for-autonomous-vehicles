@@ -62,7 +62,6 @@ def ssd_postprocess_net_out(net_out, anchors, labels, threshold, nms_threshold, 
     np.set_printoptions(precision=2, suppress=True, linewidth=90)
     print("Predicted boxes:\n")
     print('    class    conf  xmin    ymin    xmax    ymax')
-    print net_out 
 
     C = len(labels) 
     B = len(anchors)
@@ -71,8 +70,9 @@ def ssd_postprocess_net_out(net_out, anchors, labels, threshold, nms_threshold, 
 
     boxes = list()
     for b in net_out:
+	print b
     	bx = BoundBox(C)
-    	bx.c, _, bx.x, bx.y, bx.w, bx.h = b
+    	bx.c, bx.probs, bx.x, bx.y, bx.w, bx.h = b
     	boxes.append(bx)
 
 

@@ -6,7 +6,7 @@ perc_mb2                     = None            # Percentage of data from the sec
 
 # Model
 model_name                   = 'ssd300'        # Model to use: one of 'yolo' or 'tiny-yolo' or 'ssd300'
-freeze_layers_from           = 'base_model'    # Freeze layers from 0 to this layer during training (Useful for finetunning) [None | 'base_model' | Layer_id]
+freeze_layers_from           = None          # Freeze layers from 0 to this layer during training (Useful for finetunning) [None | 'base_model' | Layer_id]
 show_model                   = True            # Show the architecture layers
 load_imageNet                = False           # Load Imagenet weights and normalize following imagenet procedure
 load_pretrained              = False           # Load a pretrained model for doing finetuning
@@ -18,7 +18,7 @@ test_model                   = True            # Test the model
 pred_model                   = False           # Predict using the model
 
 # Debug
-debug                        = False           # Use only few images for debuging
+debug                        = True # Use only few images for debuging
 debug_images_train           = 160             # N images for training in debug mode (-1 means all)
 debug_images_valid           = 160             # N images for validation in debug mode (-1 means all)
 debug_images_test            = 160             # N images for testing in debug mode (-1 means all)

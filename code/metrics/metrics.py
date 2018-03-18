@@ -366,6 +366,10 @@ def SSDLoss(neg_pos_ratio=3, n_neg_min=0, alpha=1.0):
     Returns:
         A scalar, the total multitask loss for classification and localization.
     '''
+
+    print y_true
+    print y_pred
+
     tf_neg_pos_ratio = tf.constant(neg_pos_ratio)
     tf_n_neg_min = tf.constant(n_neg_min)
     tf_alpha = tf.constant(alpha)

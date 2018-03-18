@@ -4,7 +4,7 @@ timestr = time.strftime("%Y%m%d-%H%M%S")
 
 # Dataset
 problem_type                 = 'detection'     # ['classification' | 'detection' | 'segmentation']
-dataset_name                 = 'TT100K_detection' # Dataset name
+dataset_name                 = 'Udacity_v2' # Dataset name
 dataset_name2                = None            # Second dataset name. None if not Domain Adaptation
 perc_mb2                     = None            # Percentage of data from the second dataset in each minibatch
 
@@ -18,7 +18,7 @@ weights_file                 = '/home/master/sufav/code/weights/yolo.hdf5'
   # Training weight file name
 
 # Parameters
-train_model                  = True            # Train the model
+train_model                  = True           # Train the model
 test_model                   = True            # Test the model
 pred_model                   = False           # Predict using the model
 
@@ -52,7 +52,7 @@ seed_test                    = 1924            # Random seed for the testing shu
 optimizer                    = 'rmsprop'       # Optimizer
 learning_rate                = 0.0001          # Training learning rate
 weight_decay                 = 0.              # Weight decay or L2 parameter norm penalty
-n_epochs                     = 10              # Number of epochs during training
+n_epochs                     = 40              # Number of epochs during training
 
 # Callback save results
 save_results_enabled         = False           # Enable the Callback
@@ -81,7 +81,7 @@ plotHist_verbose             = 0               # Verbosity of the callback
 
 # Callback LR decay scheduler
 lrDecayScheduler_enabled     = True            # Enable the Callback
-lrDecayScheduler_epochs      = [2, 4, 6, 8]    # List of epochs were decay is applied or None for all epochs
+lrDecayScheduler_epochs      = [10, 20, 30, 35]  # List of epochs were decay is applied or None for all epochs
 lrDecayScheduler_rate        = 5               # Decay rate (new_lr = lr / decay_rate). Usually between 2 and 10.
 
 # Callback learning rate scheduler

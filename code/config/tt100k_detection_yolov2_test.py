@@ -14,13 +14,13 @@ freeze_layers_from           = None            # Freeze layers from 0 to this la
 show_model                   = False           # Show the architecture layers
 load_imageNet                = False           # Load Imagenet weights and normalize following imagenet procedure
 load_pretrained              = True           # Load a pretrained model for doing finetuning
-weights_file                 = '/home/master/sufav/code/weights/yolo.hdf5'
+weights_file                 = '/home/master/sufav/code/weights/yolov2.hdf5'
   # Training weight file name
 
 # Parameters
-train_model                  = True            # Train the model
-test_model                   = True            # Test the model
-pred_model                   = False           # Predict using the model
+train_model                  = False            # Train the model
+test_model                   = True           # Test the model
+pred_model                   = True           # Predict using the model
 
 # Debug
 debug                        = False           # Use only few images for debuging
