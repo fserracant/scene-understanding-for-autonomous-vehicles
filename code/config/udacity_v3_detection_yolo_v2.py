@@ -4,7 +4,7 @@ timestr = time.strftime("%Y%m%d-%H%M%S")
 
 # Dataset
 problem_type                 = 'detection'     # ['classification' | 'detection' | 'segmentation']
-dataset_name                 = 'Udacity_v2' # Dataset name
+dataset_name                 = 'Udacity_v3' # Dataset name
 dataset_name2                = None            # Second dataset name. None if not Domain Adaptation
 perc_mb2                     = None            # Percentage of data from the second dataset in each minibatch
 
@@ -18,7 +18,7 @@ weights_file                 = '/home/master/sufav/code/weights/yolo.hdf5'
   # Training weight file name
 
 # Parameters
-train_model                  = False           # Train the model
+train_model                  = True           # Train the model
 test_model                   = True            # Test the model
 pred_model                   = False           # Predict using the model
 
