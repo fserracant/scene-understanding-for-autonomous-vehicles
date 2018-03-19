@@ -1,6 +1,7 @@
 from __future__ import absolute_import
 from __future__ import print_function
 
+from PIL import Image as pil_image
 import warnings
 import skimage.io as io
 from skimage.color import rgb2gray, gray2rgb
@@ -113,7 +114,26 @@ def transform_matrix_offset_center(matrix, x, y):
     reset_matrix = np.array([[1, 0, -o_x], [0, 1, -o_y], [0, 0, 1]])
     transform_matrix = np.dot(np.dot(offset_matrix, matrix), reset_matrix)
     return transform_matrix
-
+    
+kelvin_table = {
+    1: (255,180,107),  #3000k
+    2: (255,219,186),  #4500k
+    3: (255,249,253),  #6500k
+    4: (220,229,255),  #8500k
+    5: (204,219,255)}  #10000k
+    
+def shift_white_balance(x):
+    img =array_to_img(x)
+    temp = np.random.random_integers(1,5)
+    r, g, b = kelvin_table[temp]
+    matrix = ( r / 255.0, 0.0, 0.0, 0.0,
+               0.0, g / 255.0, 0.0, 0.0,
+               0.0, 0.0, b / 255.0, 0.0 )
+    img = img.convert('RGB', matrix)
+    
+    x=img_to_array(img)
+    return x
+    
 
 def apply_transform(x,
                     transform_matrix,
@@ -348,10 +368,10 @@ class ImageDataGenerator(object):
                  warp_grid_size=3,
                  dim_ordering='default',
                  class_mode='categorical',
-                 model_name=None,
                  rgb_mean=None,
                  rgb_std=None,
-                 crop_size=None):
+                 crop_size=None,
+                 white_balance_shift = False):
         if dim_ordering == 'default':
             dim_ordering = K.image_dim_ordering()
         self.__dict__.update(locals())
@@ -359,6 +379,7 @@ class ImageDataGenerator(object):
         # self.rescale = rescale
         self.preprocessing_function = preprocessing_function
         self.cb_weights = None
+        self.white_balance_shift
 
         if dim_ordering not in {'tf', 'th'}:
             raise Exception('dim_ordering should be "tf" (channel after row '
@@ -404,7 +425,6 @@ class ImageDataGenerator(object):
                              '; expected one of "categorical", '
                              '"binary", "sparse", "segmentation", "detection" or None.')
         self.class_mode = class_mode
-        self.model_name = model_name
         self.has_gt_image = True if self.class_mode == 'segmentation' else False
 
     def flow(self, X, y=None, batch_size=32, shuffle=True, seed=None,
@@ -432,7 +452,7 @@ class ImageDataGenerator(object):
             batch_size=batch_size, shuffle=shuffle, seed=seed,
             gt_directory=gt_directory,
             save_to_dir=save_to_dir, save_prefix=save_prefix,
-            save_format=save_format, model_name=self.model_name)
+            save_format=save_format)
 
     def flow_from_directory2(self, directory,
                              resize=None, target_size=(256, 256),
@@ -542,6 +562,9 @@ class ImageDataGenerator(object):
         img_row_index = self.row_index - 1
         img_col_index = self.col_index - 1
         img_channel_index = self.channel_index - 1
+        
+        if self.white_balance_shift:
+            x = shift_white_balance(x)
 
         # prepare the data if GT is detection
         if self.class_mode == 'detection':
@@ -1114,7 +1137,7 @@ class DirectoryIterator(Iterator):
                  dim_ordering='default',
                  classes=None, class_mode='categorical',
                  batch_size=32, shuffle=True, seed=None, gt_directory=None,
-                 save_to_dir=None, save_prefix='', save_format='jpeg', model_name=None):
+                 save_to_dir=None, save_prefix='', save_format='jpeg'):
         # Check dim order
         if dim_ordering == 'default':
             dim_ordering = K.image_dim_ordering()
@@ -1162,7 +1185,6 @@ class DirectoryIterator(Iterator):
                              '; expected one of "categorical", '
                              '"binary", "sparse", "segmentation", "detection" or None.')
         self.class_mode = class_mode
-        self.model_name = model_name
         self.has_gt_image = True if self.class_mode == 'segmentation' else False
 
         # Check class names
