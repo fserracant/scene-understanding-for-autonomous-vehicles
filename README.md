@@ -124,10 +124,27 @@ for more details.
 
 ### Week 3/4: object detection
 #### Summary
-These two weeks have been devoted to the study and implementation of state-of-the-art architectures for object detection. During week 3, we have tested the vainilla YOLO (v1) architecture with the TT100K dataset (for detection, without crops of only signals) and assessed the overffiting and unbalancing problems encountered. We have disscussed about the source/s behind this problem and proposed some possible solutions (data augmentation, dropout, etc.).
-Later, on week 4, ...
-See our report and presentation for more details.
+These two weeks have been devoted to the study and implementation of
+state-of-the-art architectures for object detection. We have tested the
+vainilla YOLO (v1) architecture with both TT100K (for detection, instead
+of using crops containing only signals) and Udacity datasets and
+analysed overffiting and unbalancing problems we encountered. We have
+proposed possible solutions and implemented some, like data augmentation
+and re-splitting the partition given. We also worked hard in
+implementing an SSD but we could not finished it. We can see the loss
+decreasing and getting to a plateau during the training but we have no
+bounding boxes to assess the detections. Check our report and
+presentation for more details.
+
 #### Results
+
+| Model          | Precision | Recall | F-score |
+|:-------------- |:---------:|:------:|:-------:|
+| YOLO           |   .198    |  .144  |  1.67   |
+| + WB DA        |   .276    |  .219  |  .244   |
+| + re-splitting |   .204    |  .148  |  .171   |
+| SSD            |     -     |   -    |    -    |
+
 
 ### Week 5/6: object segmentation
 #### Summary
