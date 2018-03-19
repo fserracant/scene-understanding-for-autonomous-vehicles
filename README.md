@@ -94,20 +94,20 @@ You can find some the weight from our experiements in this
 [GoogleDrive][weights].
 
 ## The progress at a glance
-### Week 1/2: object recognition
+### Object recognition
 #### Summary
-These two weeks have been devoted to the study of state-of-the-art
-architectures for object recognition. In particular, we have evaluated
-the vainilla VGG16 architecture weights to recognise traffic signals
-from the TT100K dataset. We compared the performance between cropped and
-resized images as well as the adaption of the network to another domain
-(BelgiumTS). Moreover, we have trained the VGG16 both from scratch and
-with pre-trained weights from ImageNet on the KITTI dataset and analysed
-their results. Finally, we have implemented the Squeeze and Excitation
-Network (added to [models](code/models) and compared the vainilla
-ResNet50 results with its SE counterpart, both with fine-tuning and from
-scratch. Each dataset has been analysed to help us draw meaningful
-conclusions from the results obtained. Check our report and presentation
+Two weeks have been devoted to the study of state-of-the-art 
+architectures for object recognition. In particular, we have evaluated 
+the vainilla VGG16 architecture weights to recognise traffic signals 
+from the TT100K dataset. We compared the performance between cropped and 
+resized images as well as the adaption of the network to another domain 
+(BelgiumTS). Moreover, we have trained the VGG16 both from scratch and 
+with pre-trained weights from ImageNet on the KITTI dataset and analysed 
+their results. Finally, we have implemented the Squeeze and Excitation 
+Network (added to [models](code/models) and compared the vainilla 
+ResNet50 results with its SE counterpart, both with fine-tuning and from 
+scratch. Each dataset has been analysed to help us draw meaningful 
+conclusions from the results obtained. Check our report and presentation 
 for more details.
 
 #### Results
@@ -122,18 +122,18 @@ for more details.
 | + crop          |   0.945   |   0.836   |  0.866   |
 | + fine-tune BTS |   0.789   |   0.767   |  0.767   |
 
-### Week 3/4: object detection
+### Object detection
 #### Summary
-These two weeks have been devoted to the study and implementation of
-state-of-the-art architectures for object detection. We have tested the
-vainilla YOLO (v1) architecture with both TT100K (for detection, instead
-of using crops containing only signals) and Udacity datasets and
-analysed overffiting and unbalancing problems we encountered. We have
-proposed possible solutions and implemented some, like data augmentation
-and re-splitting the partition given. We also worked hard in
-implementing an SSD but we could not finished it. We can see the loss
-decreasing and getting to a plateau during the training but we have no
-bounding boxes to assess the detections. Check our report and
+Two weeks have been devoted to the study and implementation of 
+state-of-the-art architectures for object detection. We have tested the 
+vainilla YOLO (v1) architecture with both TT100K (for detection, instead 
+of using crops containing only signals) and Udacity datasets and 
+analysed overffiting and unbalancing problems we encountered. We have 
+proposed possible solutions and implemented some, like data augmentation 
+and re-splitting the partition given. We also worked hard in 
+implementing an SSD but we could not finished it. We can see the loss 
+decreasing and getting to a plateau during the training but we have no 
+bounding boxes to assess the detections. Check our report and 
 presentation for more details.
 
 #### Results
