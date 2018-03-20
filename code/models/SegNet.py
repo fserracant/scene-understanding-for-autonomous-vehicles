@@ -18,71 +18,72 @@ def build_segnet(img_shape=(416, 608, 3), nclasses=8, l2_reg=0.,
 	pad = 1
 	pool_size = 2
 
-	model = models.Sequential()
-	model.add(Layer(input_shape=(3, input_height , input_width )))
+	model = Sequential()
+	model.add(Layer(input_shape=img_shape))
 
 	# encoder
 	model.add(ZeroPadding2D(padding=(pad,pad)))
-	model.add(Convolution2D(filter_size, kernel, kernel, border_mode='valid'))
+	model.add(Conv2D(filter_size, (kernel, kernel), padding='valid'))
 	model.add(BatchNormalization())
 	model.add(Activation('relu'))
 	model.add(MaxPooling2D(pool_size=(pool_size, pool_size)))
 
 	model.add(ZeroPadding2D(padding=(pad,pad)))
-	model.add(Convolution2D(128, kernel, kernel, border_mode='valid'))
+	model.add(Conv2D(128, (kernel, kernel), padding='valid'))
 	model.add(BatchNormalization())
 	model.add(Activation('relu'))
 	model.add(MaxPooling2D(pool_size=(pool_size, pool_size)))
 
 	model.add(ZeroPadding2D(padding=(pad,pad)))
-	model.add(Convolution2D(256, kernel, kernel, border_mode='valid'))
+	model.add(Conv2D(256, (kernel, kernel), padding='valid'))
 	model.add(BatchNormalization())
 	model.add(Activation('relu'))
 	model.add(MaxPooling2D(pool_size=(pool_size, pool_size)))
 
 	model.add(ZeroPadding2D(padding=(pad,pad)))
-	model.add(Convolution2D(512, kernel, kernel, border_mode='valid'))
+	model.add(Conv2D(512, (kernel, kernel), padding='valid'))
 	model.add(BatchNormalization())
 	model.add(Activation('relu'))
 
 
 	# decoder
 	model.add( ZeroPadding2D(padding=(pad,pad)))
-	model.add( Convolution2D(512, kernel, kernel, border_mode='valid'))
+	model.add( Conv2D(512, (kernel, kernel), padding='valid'))
 	model.add( BatchNormalization())
 
 	model.add( UpSampling2D(size=(pool_size,pool_size)))
 	model.add( ZeroPadding2D(padding=(pad,pad)))
-	model.add( Convolution2D(256, kernel, kernel, border_mode='valid'))
+	model.add( Conv2D(256, (kernel, kernel), padding='valid'))
 	model.add( BatchNormalization())
 
 	model.add( UpSampling2D(size=(pool_size,pool_size)))
 	model.add( ZeroPadding2D(padding=(pad,pad)))
-	model.add( Convolution2D(128, kernel, kernel, border_mode='valid'))
+	model.add( Conv2D(128, (kernel, kernel), padding='valid'))
 	model.add( BatchNormalization())
 
 	model.add( UpSampling2D(size=(pool_size,pool_size)))
 	model.add( ZeroPadding2D(padding=(pad,pad)))
-	model.add( Convolution2D(filter_size, kernel, kernel, border_mode='valid'))
+	model.add( Conv2D(filter_size, (kernel, kernel), padding='valid'))
 	model.add( BatchNormalization())
 
 
-	model.add(Convolution2D( nClasses , 1, 1, border_mode='valid',))
+	model.add(Conv2D( nclasses , (1, 1), padding='valid',))
 
-	model.outputHeight = model.output_shape[-2]
-	model.outputWidth = model.output_shape[-1]
+	model.outputHeight = model.output_shape[1]
+	model.outputWidth = model.output_shape[2]
+	print (model.output_shape )
 
 
-	model.add(Reshape(( nClasses ,  model.output_shape[-2]*model.output_shape[-1]   ), input_shape=( nClasses , model.output_shape[-2], model.output_shape[-1]  )))
+	model.add(Reshape(( nclasses ,  model.output_shape[1]*model.output_shape[2]   ), input_shape=( nclasses , model.output_shape[1], model.output_shape[2]  )))
 	
 	model.add(Permute((2, 1)))
 	model.add(Activation('softmax'))
 
     # Freeze some layers
-    if freeze_layers_from is not None:
-        freeze_layers(model, freeze_layers_from)
+    	if freeze_layers_from is not None:
+        	freeze_layers(model, freeze_layers_from)
 
-    return model
+    	return model
 
 
 
