@@ -5,7 +5,7 @@ dataset_name2                = None            # Second dataset name. None if no
 perc_mb2                     = None            # Percentage of data from the second dataset in each minibatch
 
 # Model
-model_name                   = 'SegNet'          # Model to use ['fcn8' | 'lenet' | 'alexNet' | 'vgg16' |  'vgg19' | 'resnet50' | 'InceptionV3']
+model_name                   = 'SegNetPoolInd'          # Model to use ['fcn8' | 'lenet' | 'alexNet' | 'vgg16' |  'vgg19' | 'resnet50' | 'InceptionV3']
 freeze_layers_from           = None            # Freeze layers from 0 to this layer during training (Useful for finetunning) [None | 'base_model' | Layer_id]
 show_model                   = True            # Show the architecture layers
 load_imageNet                = True            # Load Imagenet weights and normalize following imagenet procedure
@@ -13,7 +13,7 @@ load_pretrained              = False           # Load a pretrained model for doi
 weights_file                 = 'weights.hdf5'  # Training weight file name
 
 # Parameters
-train_model                  = True            # Train the model
+train_model                  = True           # Train the model
 test_model                   = True            # Test the model
 pred_model                   = True           # Predict using the model
 
@@ -47,7 +47,7 @@ seed_test                    = 1924            # Random seed for the testing shu
 optimizer                    = 'rmsprop'       # Optimizer
 learning_rate                = 0.0001          # Training learning rate
 weight_decay                 = 0.              # Weight decay or L2 parameter norm penalty
-n_epochs                     = 10            # Number of epochs during training
+n_epochs                     = 20            # Number of epochs during training
 
 # Callback save results
 save_results_enabled         = False           # Enable the Callback

@@ -80,7 +80,7 @@ class Model_Factory():
         if cf.model_name in ['lenet', 'alexNet', 'vgg16', 'vgg19', 'resnet50',
                              'InceptionV3', 'fcn8', 'unet', 'segnet',
                              'segnet_basic', 'resnetFCN', 'yolo', 'tiny-yolo',
-                             'senet', 'resnet','SegNet']:
+                             'senet', 'resnet','SegNet','SegNetPoolInd']:
             if optimizer is None:
                 raise ValueError('optimizer can not be None')
 
@@ -114,7 +114,11 @@ class Model_Factory():
         elif cf.model_name == 'SegNet':
             model = build_segnet(in_shape, cf.dataset.n_classes, cf.weight_decay,
                                freeze_layers_from=cf.freeze_layers_from,
-                               load_pretrained=cf.load_imageNet)
+                              indices = False)
+        elif cf.model_name == 'SegNetPoolInd':
+            model = build_segnet(in_shape, cf.dataset.n_classes, cf.weight_decay,
+                               freeze_layers_from=cf.freeze_layers_from,
+                               indices = True)
         elif cf.model_name == 'unet':
             model = build_unet(in_shape, cf.dataset.n_classes, cf.weight_decay,
                                freeze_layers_from=cf.freeze_layers_from,
