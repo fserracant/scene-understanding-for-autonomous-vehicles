@@ -18,7 +18,7 @@ from models.yolo import build_yolo
 
 # Segmentation models
 from models.fcn8 import build_fcn8
-from models.SegNet import build_segnet
+from models.SegNet import build_segnet,build_segnet_PI
 
 # Adversarial models
 #from models.adversarial_semseg import Adversarial_Semseg
@@ -113,10 +113,9 @@ class Model_Factory():
                                load_pretrained=cf.load_imageNet)
         elif cf.model_name == 'SegNet':
             model = build_segnet(in_shape, cf.dataset.n_classes, cf.weight_decay,
-                               freeze_layers_from=cf.freeze_layers_from,
-                              indices = False)
+                               freeze_layers_from=cf.freeze_layers_from)
         elif cf.model_name == 'SegNetPoolInd':
-            model = build_segnet(in_shape, cf.dataset.n_classes, cf.weight_decay,
+            model = build_segnet_PI(in_shape, cf.dataset.n_classes, cf.weight_decay,
                                freeze_layers_from=cf.freeze_layers_from,
                                indices = True)
         elif cf.model_name == 'unet':
