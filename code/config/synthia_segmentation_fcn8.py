@@ -15,7 +15,7 @@ weights_file                 = '/home/master/sufav/code/weights/vgg16_weights_tf
 # Parameters
 train_model                  = True            # Train the model
 test_model                   = True            # Test the model
-pred_model                   = True            # Predict using the model
+pred_model                   = True           # Predict using the model
 
 # Debug
 debug                        = False           # Use only few images for debuging
@@ -25,9 +25,9 @@ debug_images_test            = 30              # N images for testing in debug m
 debug_n_epochs               = 2               # N of training epochs in debug mode
 
 # Batch sizes
-batch_size_train             = 4               # Batch size during training
-batch_size_valid             = 8              # Batch size during validation
-batch_size_test              = 8              # Batch size during testing
+batch_size_train             = 5               # Batch size during training
+batch_size_valid             = 10              # Batch size during validation
+batch_size_test              = 10              # Batch size during testing
 crop_size_train              = None            # Crop size during training (Height, Width) or None
 crop_size_valid              = None            # Crop size during validation
 crop_size_test               = None            # Crop size during testing
@@ -44,10 +44,10 @@ seed_valid                   = 1924            # Random seed for the validation 
 seed_test                    = 1924            # Random seed for the testing shuffle
 
 # Training parameters
-optimizer                    = 'adam'       # Optimizer
+optimizer                    = 'rmsprop'       # Optimizer
 learning_rate                = 0.0001          # Training learning rate
 weight_decay                 = 0.              # Weight decay or L2 parameter norm penalty
-n_epochs                     = 10            # Number of epochs during training
+n_epochs                     = 40            # Number of epochs during training
 
 # Callback save results
 save_results_enabled         = False           # Enable the Callback
@@ -88,7 +88,7 @@ LRScheduler_S                = 10000            # Step for the 'step' method
 LRScheduler_power            = 0.9              # Power for te poly method
 
 # Callback TensorBoard
-TensorBoard_enabled          = True            # Enable the Callback
+TensorBoard_enabled          = False            # Enable the Callback
 TensorBoard_histogram_freq   = 0                # Frequency (in epochs) at which to compute activation histograms for the layers of the model. If set to 0, histograms won't be computed.
 TensorBoard_write_graph      = True             # Whether to visualize the graph in Tensorboard. The log file can become quite large when write_graph is set to True.
 TensorBoard_write_images     = False            # Whether to write model weights to visualize as image in Tensorboard.
@@ -121,4 +121,4 @@ da_spline_warp                     = False  # Enable elastic deformation
 da_warp_sigma                      = 10     # Elastic deformation sigma
 da_warp_grid_size                  = 3      # Elastic deformation gridSize
 da_save_to_dir                     = False  # Save the images for debuging
-wb_shift                = False      #Perform random white balance shift
+wb_shift                           = False  #Perform random white balance shift
