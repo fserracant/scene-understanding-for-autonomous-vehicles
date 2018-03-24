@@ -40,7 +40,7 @@ class DePool2D(UpSampling2D):
         ) * output
 
 
-def build_segnet_old(img_shape=(416, 608, 3), nclasses=8, l2_reg=0.,
+def build_segnet(img_shape=(416, 608, 3), nclasses=8, l2_reg=0.,
                init='glorot_uniform', path_weights=None,
                load_pretrained=False, freeze_layers_from=None):
 
@@ -122,7 +122,7 @@ def build_segnet_old(img_shape=(416, 608, 3), nclasses=8, l2_reg=0.,
         
 
     
-def build_segnet(img_shape=(416, 608, 3), nclasses=8, l2_reg=0.,
+def build_segnet_PI(img_shape=(416, 608, 3), nclasses=8, l2_reg=0.,
                ker_init='glorot_uniform',  freeze_layers_from=None, indices = True):
 
     input_tensor = Input(shape=img_shape) # type: object
@@ -187,7 +187,7 @@ def build_segnet(img_shape=(416, 608, 3), nclasses=8, l2_reg=0.,
 
     # Freeze some layers
     if freeze_layers_from is not None:
-        	freeze_layers(model, freeze_layers_from)
+        freeze_layers(model, freeze_layers_from)
 
     return model
     
