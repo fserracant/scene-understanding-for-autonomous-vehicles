@@ -8,3 +8,6 @@
 - [Image detection](summaries_detection.md)
   - [YOLOv1](summaries_detection.md#yolo)
   - [SSD](summaries_detection.md#ssd)
+- [Image segmentation](summaries_segmentation.md)
+  - [FCN](summaries_segmentation.md#fcn)
+  - [SegNet](summaries_segmentation.md#segnet)
