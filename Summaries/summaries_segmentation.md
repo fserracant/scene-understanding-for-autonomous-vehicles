@@ -29,3 +29,22 @@ An official implementation on Caffe is publicly [available in GitHub](https://gi
 ## SegNet
 [A Deep Convolutional Encoder-Decoder Architecture for Image Segmentation](https://arxiv.org/abs/1511.00561)
 
+SegNet is a fully convolutional network with an encoder-decoder architecture [Fig. d](#segnet_net_original). It is based on VGG16, in fact the encoder is topologically identical to the VGG16’s 13 conv layers. As it is a fully convolutional net, the authors removed the FC layers which reduces the number of parameters up to a 10%.
+
+<p align="center"><img src="segnet_net_original.png" width="480"></p>
+<a name="segnet_net_original"><p align="center"><i> d) SegNet architecture </i></p>
+
+The encoder is a serie of blocks of convolutional layers, with *batch normalization*, plus *ReLU* and a *2x2* *max-pooling*. All the filters are of size *7x7* which provides a wide context for smooth labelling. From the max-pooling, the indices where its value are max are stored for future use in the decoder. This has a really small memory footprint (each index can be encoded with 2 bits, when using a *2x2* filter size).
+
+On the other hand, the decoder is a serie of blocks of upsampling, convolutions and batch normalizations operations. The upsampling is a non-linear non-trainable operation which uses the stored indices to output an sparse n-dim array. Then this n-dim array is densified using convolutions which filters are initialized using bilinear interpolation weights. Afterwards, a soft-max classifier is appended to extract pixel-class probabilities. Finally, the segmentation is done using the max probable class per each pixel.
+
+They are quite thoroughly in details about different experiments. As a sum up, their conclusions are that having learnable decoders is necessary for segmentation, that using indices instead of other techniques boost the inference time, that having a larger model than FCN provides a better fitted model on training, that in general is good for the performance to have information flowing from the encoder to the decoder, specially for the semantic contour measure *boundary F1-measure* (BF). They also state that SegNet is a good choice when there is a compromise between storage cost, accuracy versus inference time. 
+
+As it is based on VGG16, the encoder is initialized with pre-trained weights from large datasets. The authors asses the net with [CamVid dataset](http://mi.eng.cam.ac.uk/research/projects/VideoRec/CamVid/) and [SUN RGB-D](http://rgbd.cs.princeton.edu), using SGD and end-to-end. The first dataset contains outdoor images captured from a moving car, the second images from furnished rooms in RGB along with depth channel. However depth is not used on the experiments.
+
+For CamVid, an extract of the results comparing FCN with SegNet can be seen in (Fig. e)[#segnet_vs_fcn_on_camvid].
+
+<p align="center"><img src="segnet_vs_fcn_on_camvid.png" width="480"></p>
+<a name="segnet_vs_fcn_on_camvid"><p align="center"><i> e) SegNet vs FCN on CamVid dataset </i></p>
+
+An official implementation on Caffe is publicly [available in GitHub](https://github.com/alexgkendall/caffe-segnet)
