@@ -5,12 +5,12 @@ dataset_name2                = None            # Second dataset name. None if no
 perc_mb2                     = None            # Percentage of data from the second dataset in each minibatch
 
 # Model
-model_name                   = 'SegNetPoolInd'          # Model to use ['fcn8' | 'lenet' | 'alexNet' | 'vgg16' |  'vgg19' | 'resnet50' | 'InceptionV3']
+model_name                   = 'fcn8'          # Model to use ['fcn8' | 'lenet' | 'alexNet' | 'vgg16' |  'vgg19' | 'resnet50' | 'InceptionV3']
 freeze_layers_from           = None            # Freeze layers from 0 to this layer during training (Useful for finetunning) [None | 'base_model' | Layer_id]
 show_model                   = True            # Show the architecture layers
-load_imageNet                = False            # Load Imagenet weights and normalize following imagenet procedure
-load_pretrained              = True           # Load a pretrained model for doing finetuning
-weights_file                 = '/home/master/sufav/results/master/Experiments/camvid/240318_SegNet_PI/final/weights.hdf5'  # Training weight file name
+load_imageNet                = False           # Load Imagenet weights and normalize following imagenet procedure
+load_pretrained              = True            # Load a pretrained model for doing finetuning
+weights_file                 = 'weights.hdf5'  #'vgg16_weights_tf_dim_ordering_tf_kernels.h5'  # Training weight file name
 
 # Parameters
 train_model                  = False           # Train the model
@@ -28,9 +28,9 @@ debug_n_epochs               = 2               # N of training epochs in debug m
 batch_size_train             = 5               # Batch size during training
 batch_size_valid             = 10              # Batch size during validation
 batch_size_test              = 10              # Batch size during testing
-crop_size_train              = None            # Crop size during training (Height, Width) or None
-crop_size_valid              = None            # Crop size during validation
-crop_size_test               = None            # Crop size during testing
+crop_size_train              = (300, 400)      # Crop size during training (Height, Width) or None
+crop_size_valid              = (300, 400)      # Crop size during validation
+crop_size_test               = (300, 400)      # Crop size during testing
 resize_train                 = (360, 480)      # Resize the image during training (Height, Width) or None
 resize_valid                 = (360, 480)      # Resize the image during validation
 resize_test                  = (360, 480)      # Resize the image during testing
@@ -45,9 +45,9 @@ seed_test                    = 1924            # Random seed for the testing shu
 
 # Training parameters
 optimizer                    = 'rmsprop'       # Optimizer
-learning_rate                = 0.0001          # Training learning rate
-weight_decay                 = 0.              # Weight decay or L2 parameter norm penalty
-n_epochs                     = 40            # Number of epochs during training
+learning_rate                = 1e-5            # Training learning rate
+weight_decay                 = 1e-4            # Weight decay or L2 parameter norm penalty
+n_epochs                     = 200             # Number of epochs during training
 
 # Callback save results
 save_results_enabled         = False           # Enable the Callback
@@ -95,8 +95,8 @@ TensorBoard_write_images     = False            # Whether to write model weights
 TensorBoard_logs_folder      = None             #
 
 # Data augmentation for training and normalization
-norm_imageNet_preprocess           = False  # Normalize following imagenet procedure
-norm_fit_dataset                   = True   # If True it recompute std and mean from images. Either it uses the std and mean set at the dataset config file
+norm_imageNet_preprocess           = True  # Normalize following imagenet procedure
+norm_fit_dataset                   = False   # If True it recompute std and mean from images. Either it uses the std and mean set at the dataset config file
 norm_rescale                       = 1/255. # Scalar to divide and set range 0-1
 norm_featurewise_center            = False   # Substract mean - dataset
 norm_featurewise_std_normalization = False   # Divide std - dataset
@@ -107,18 +107,18 @@ norm_zca_whitening                 = False  # Apply ZCA whitening
 cb_weights_method                  = None   # Label weight balance [None | 'median_freq_cost' | 'rare_freq_cost']
 
 # Data augmentation for training
-da_rotation_range                  = 0      # Rnd rotation degrees 0-180
-da_width_shift_range               = 0.0    # Rnd horizontal shift
-da_height_shift_range              = 0.0    # Rnd vertical shift
+da_rotation_range                  = 5      # Rnd rotation degrees 0-180
+da_width_shift_range               = 0.2    # Rnd horizontal shift
+da_height_shift_range              = 0.2    # Rnd vertical shift
 da_shear_range                     = 0.0    # Shear in radians
-da_zoom_range                      = 0.0    # Zoom
+da_zoom_range                      = 0.3    # Zoom
 da_channel_shift_range             = 0.     # Channecf.l shifts
 da_fill_mode                       = 'constant'  # Fill mode
 da_cval                            = 0.     # Void image value
-da_horizontal_flip                 = False  # Rnd horizontal flip
+da_horizontal_flip                 = True   # Rnd horizontal flip
 da_vertical_flip                   = False  # Rnd vertical flip
 da_spline_warp                     = False  # Enable elastic deformation
 da_warp_sigma                      = 10     # Elastic deformation sigma
 da_warp_grid_size                  = 3      # Elastic deformation gridSize
 da_save_to_dir                     = False  # Save the images for debuging
-wb_shift                = False      #Perform random white balance shift
+wb_shift                           = False  #Perform random white balance shift

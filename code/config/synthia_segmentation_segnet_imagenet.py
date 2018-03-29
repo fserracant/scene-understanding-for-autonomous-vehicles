@@ -1,6 +1,6 @@
 # Dataset
 problem_type                 = 'segmentation'  # ['classification' | 'detection' | 'segmentation']
-dataset_name                 = 'camvid'        # Dataset name
+dataset_name                 = 'synthia_rand_cityscapes'        # Dataset name
 dataset_name2                = None            # Second dataset name. None if not Domain Adaptation
 perc_mb2                     = None            # Percentage of data from the second dataset in each minibatch
 
@@ -8,12 +8,12 @@ perc_mb2                     = None            # Percentage of data from the sec
 model_name                   = 'SegNetPoolInd'          # Model to use ['fcn8' | 'lenet' | 'alexNet' | 'vgg16' |  'vgg19' | 'resnet50' | 'InceptionV3']
 freeze_layers_from           = None            # Freeze layers from 0 to this layer during training (Useful for finetunning) [None | 'base_model' | Layer_id]
 show_model                   = True            # Show the architecture layers
-load_imageNet                = False            # Load Imagenet weights and normalize following imagenet procedure
-load_pretrained              = True           # Load a pretrained model for doing finetuning
-weights_file                 = '/home/master/sufav/results/master/Experiments/camvid/240318_SegNet_PI/final/weights.hdf5'  # Training weight file name
+load_imageNet                = False           # Load Imagenet weights and normalize following imagenet procedure
+load_pretrained              = True            # Load a pretrained model for doing finetuning
+weights_file                 = 'vgg16_weights_tf_dim_ordering_tf_kernels.h5'  # Training weight file name
 
 # Parameters
-train_model                  = False           # Train the model
+train_model                  = True            # Train the model
 test_model                   = True            # Test the model
 pred_model                   = False           # Predict using the model
 
@@ -44,9 +44,9 @@ seed_valid                   = 1924            # Random seed for the validation 
 seed_test                    = 1924            # Random seed for the testing shuffle
 
 # Training parameters
-optimizer                    = 'rmsprop'       # Optimizer
-learning_rate                = 0.0001          # Training learning rate
-weight_decay                 = 0.              # Weight decay or L2 parameter norm penalty
+optimizer                    = 'adam'       # Optimizer
+learning_rate                = 1e-5          # Training learning rate
+weight_decay                 = 5e-4              # Weight decay or L2 parameter norm penalty
 n_epochs                     = 40            # Number of epochs during training
 
 # Callback save results
@@ -121,4 +121,4 @@ da_spline_warp                     = False  # Enable elastic deformation
 da_warp_sigma                      = 10     # Elastic deformation sigma
 da_warp_grid_size                  = 3      # Elastic deformation gridSize
 da_save_to_dir                     = False  # Save the images for debuging
-wb_shift                = False      #Perform random white balance shift
+wb_shift                           = False  #Perform random white balance shift

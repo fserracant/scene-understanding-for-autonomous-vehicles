@@ -10,6 +10,7 @@ from PIL import ImageDraw
 import math
 import skimage.io as io
 from keras import backend as K
+import subprocess  # to update save_img3()
 dim_ordering = K.image_dim_ordering()
 
 
@@ -146,8 +147,11 @@ def save_img3(image_batch, mask_batch, output, out_images_folder, epoch,
         combined_image = np.concatenate((img, label_mask, label_out,
                                          label_overlay), axis=1)
 
+	# Define absolute path to font (otherwise it does not work)
+        repo_dir = subprocess.Popen(['git', 'rev-parse', '--show-toplevel'], stdout=subprocess.PIPE).communicate()[0].rstrip().decode('utf-8')
+        font_path = os.path.join(repo_dir, 'code', 'fonts', 'Cicle_Gordita.ttf')
         legend = draw_legend(combined_image.shape[1], color_map, classes,
-                             n_lines=n_legend_rows)
+                             n_lines=n_legend_rows, font_file=font_path)
         combined_image = np.concatenate((combined_image, legend))
 
         out_name = os.path.join(out_images_folder, tag + '_epoch' + str(epoch) + '_img' + str(j) + '.png')

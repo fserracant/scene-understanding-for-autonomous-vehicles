@@ -43,8 +43,6 @@ def process(cf):
         model.train(train_gen, valid_gen, cb)
 
     if cf.test_model:
-        # Compute validation metrics
-        model.test(valid_gen)
         # Compute test metrics
         model.test(test_gen)
 
@@ -133,4 +131,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-    if (valid_gen != None): model.test(valid_gen)

@@ -10,30 +10,30 @@ freeze_layers_from           = None            # Freeze layers from 0 to this la
 show_model                   = True            # Show the architecture layers
 load_imageNet                = False            # Load Imagenet weights and normalize following imagenet procedure
 load_pretrained              = True           # Load a pretrained model for doing finetuning
-weights_file                 = '/home/master/sufav/code/weights/vgg16_weights_tf_dim_ordering_tf_kernels.h5'  # Training weight file name
+weights_file                 = 'vgg16_weights_tf_dim_ordering_tf_kernels.h5'  # Training weight file name
 
 # Parameters
-train_model                  = True            # Train the model
+train_model                  = True           # Train the model
 test_model                   = True            # Test the model
-pred_model                   = True           # Predict using the model
+pred_model                   = False           # Predict using the model
 
 # Debug
 debug                        = False           # Use only few images for debuging
 debug_images_train           = 50              # N images for training in debug mode (-1 means all)
 debug_images_valid           = 30              # N images for validation in debug mode (-1 means all)
 debug_images_test            = 30              # N images for testing in debug mode (-1 means all)
-debug_n_epochs               = 2               # N of training epochs in debug mode
+debug_n_epochs               = 10              # N of training epochs in debug mode
 
 # Batch sizes
 batch_size_train             = 5               # Batch size during training
 batch_size_valid             = 10              # Batch size during validation
 batch_size_test              = 10              # Batch size during testing
-crop_size_train              = None            # Crop size during training (Height, Width) or None
-crop_size_valid              = None            # Crop size during validation
-crop_size_test               = None            # Crop size during testing
-resize_train                 = (380, 640)      # Resize the image during training (Height, Width) or None
-resize_valid                 = (380, 640)      # Resize the image during validation
-resize_test                  = (380, 640)      # Resize the image during testing
+crop_size_train              = (300, 400)      # Crop size during training (Height, Width) or None
+crop_size_valid              = (300, 400)      # Crop size during validation
+crop_size_test               = (300, 400)      # Crop size during testing
+resize_train                 = (360, 480)      # Resize the image during training (Height, Width) or None
+resize_valid                 = (360, 480)      # Resize the image during validation
+resize_test                  = (360, 480)      # Resize the image during testing
 
 # Data shuffle
 shuffle_train                = True            # Whether to shuffle the training data
@@ -45,12 +45,12 @@ seed_test                    = 1924            # Random seed for the testing shu
 
 # Training parameters
 optimizer                    = 'rmsprop'       # Optimizer
-learning_rate                = 0.0001          # Training learning rate
-weight_decay                 = 0.              # Weight decay or L2 parameter norm penalty
-n_epochs                     = 40            # Number of epochs during training
+learning_rate                = 1e-5            # Training learning rate
+weight_decay                 = 5e-4            # Weight decay or L2 parameter norm penalty
+n_epochs                     = 200             # Number of epochs during training
 
 # Callback save results
-save_results_enabled         = False           # Enable the Callback
+save_results_enabled         = True           # Enable the Callback
 save_results_nsamples        = 5               # Number of samples to save
 save_results_batch_size      = 5               # Size of the batch
 
@@ -107,15 +107,15 @@ norm_zca_whitening                 = False  # Apply ZCA whitening
 cb_weights_method                  = None   # Label weight balance [None | 'median_freq_cost' | 'rare_freq_cost']
 
 # Data augmentation for training
-da_rotation_range                  = 0      # Rnd rotation degrees 0-180
-da_width_shift_range               = 0.0    # Rnd horizontal shift
-da_height_shift_range              = 0.0    # Rnd vertical shift
+da_rotation_range                  = 5      # Rnd rotation degrees 0-180
+da_width_shift_range               = 0.2    # Rnd horizontal shift
+da_height_shift_range              = 0.2    # Rnd vertical shift
 da_shear_range                     = 0.0    # Shear in radians
-da_zoom_range                      = 0.0    # Zoom
+da_zoom_range                      = 0.3    # Zoom
 da_channel_shift_range             = 0.     # Channecf.l shifts
 da_fill_mode                       = 'constant'  # Fill mode
 da_cval                            = 0.     # Void image value
-da_horizontal_flip                 = False  # Rnd horizontal flip
+da_horizontal_flip                 = True   # Rnd horizontal flip
 da_vertical_flip                   = False  # Rnd vertical flip
 da_spline_warp                     = False  # Enable elastic deformation
 da_warp_sigma                      = 10     # Elastic deformation sigma
