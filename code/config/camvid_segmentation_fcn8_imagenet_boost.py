@@ -15,7 +15,7 @@ weights_file                 = 'weights.hdf5'  #'vgg16_weights_tf_dim_ordering_t
 # Parameters
 train_model                  = False           # Train the model
 test_model                   = True            # Test the model
-pred_model                   = False           # Predict using the model
+pred_model                   = True            # Predict using the model
 
 # Debug
 debug                        = False           # Use only few images for debuging
@@ -50,7 +50,7 @@ weight_decay                 = 1e-4            # Weight decay or L2 parameter no
 n_epochs                     = 200             # Number of epochs during training
 
 # Callback save results
-save_results_enabled         = False           # Enable the Callback
+save_results_enabled         = True            # Enable the Callback
 save_results_nsamples        = 5               # Number of samples to save
 save_results_batch_size      = 5               # Size of the batch
 

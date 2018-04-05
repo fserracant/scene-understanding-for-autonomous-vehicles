@@ -1,16 +1,16 @@
 # Dataset
 problem_type                 = 'segmentation'  # ['classification' | 'detection' | 'segmentation']
-dataset_name                 = 'synthia_rand_cityscapes'        # Dataset name
-dataset_name2                = None            # Second dataset name. None if not Domain Adaptation
-perc_mb2                     = None            # Percentage of data from the second dataset in each minibatch
+dataset_name                 = 'camvid'        # Dataset name
+dataset_name2                = 'synthia_rand_cityscapes'  # Second dataset name. None if not Domain Adaptation
+perc_mb2                     = 40            # Percentage of data from the second dataset in each minibatch
 
 # Model
 model_name                   = 'fcn8'          # Model to use ['fcn8' | 'lenet' | 'alexNet' | 'vgg16' |  'vgg19' | 'resnet50' | 'InceptionV3']
 freeze_layers_from           = None            # Freeze layers from 0 to this layer during training (Useful for finetunning) [None | 'base_model' | Layer_id]
 show_model                   = True            # Show the architecture layers
-load_imageNet                = False            # Load Imagenet weights and normalize following imagenet procedure
-load_pretrained              = False           # Load a pretrained model for doing finetuning
-weights_file                 = 'weights.hdf5'  # Training weight file name
+load_imageNet                = False           # Load Imagenet weights and normalize following imagenet procedure
+load_pretrained              = True            # Load a pretrained model for doing finetuning
+weights_file                 = 'vgg16_weights_tf_dim_ordering_tf_kernels.h5'  # Training weight file name
 
 # Parameters
 train_model                  = True            # Train the model
@@ -18,14 +18,14 @@ test_model                   = True            # Test the model
 pred_model                   = True            # Predict using the model
 
 # Debug
-debug                        = False           # Use only few images for debuging
+debug                        = True            # Use only few images for debuging
 debug_images_train           = 50              # N images for training in debug mode (-1 means all)
 debug_images_valid           = 30              # N images for validation in debug mode (-1 means all)
 debug_images_test            = 30              # N images for testing in debug mode (-1 means all)
-debug_n_epochs               = 10               # N of training epochs in debug mode
+debug_n_epochs               = 2               # N of training epochs in debug mode
 
 # Batch sizes
-batch_size_train             = 5               # Batch size during training
+batch_size_train             = 10               # Batch size during training
 batch_size_valid             = 10              # Batch size during validation
 batch_size_test              = 10              # Batch size during testing
 crop_size_train              = (300, 400)      # Crop size during training (Height, Width) or None
@@ -44,15 +44,15 @@ seed_valid                   = 1924            # Random seed for the validation 
 seed_test                    = 1924            # Random seed for the testing shuffle
 
 # Training parameters
-optimizer                    = 'rmsprop'       # Optimizer
-learning_rate                = 0.0001          # Training learning rate
-weight_decay                 = 0.              # Weight decay or L2 parameter norm penalty
-n_epochs                     = 200            # Number of epochs during training
+optimizer                    = 'adam'       # Optimizer
+learning_rate                = 1e-5         # Training learning rate
+weight_decay                 = 5e-4         # Weight decay or L2 parameter norm penalty
+n_epochs                     = 300          # Number of epochs during training
 
 # Callback save results
 save_results_enabled         = True           # Enable the Callback
-save_results_nsamples        = 5               # Number of samples to save
-save_results_batch_size      = 5               # Size of the batch
+save_results_nsamples        = 3              # Number of samples to save
+save_results_batch_size      = 10             # Size of the batch
 
 # Callback early stoping
 earlyStopping_enabled        = True            # Enable the Callback
@@ -81,7 +81,7 @@ lrDecayScheduler_rate        = 2               # Decay rate (new_lr = lr / decay
 # Callback learning rate scheduler
 LRScheduler_enabled          = True             # Enable the Callback
 LRScheduler_batch_epoch      = 'batch'          # Schedule the LR each 'batch' or 'epoch'
-LRScheduler_type             = 'poly'         # Type of scheduler ['linear' | 'step' | 'square' | 'sqrt' | 'poly']
+LRScheduler_type             = 'poly'           # Type of scheduler ['linear' | 'step' | 'square' | 'sqrt' | 'poly']
 LRScheduler_M                = 75000            # Number of iterations/epochs expected until convergence
 LRScheduler_decay            = 0.1              # Decay for 'step' method
 LRScheduler_S                = 10000            # Step for the 'step' method
@@ -121,4 +121,4 @@ da_spline_warp                     = False  # Enable elastic deformation
 da_warp_sigma                      = 10     # Elastic deformation sigma
 da_warp_grid_size                  = 3      # Elastic deformation gridSize
 da_save_to_dir                     = False  # Save the images for debuging
-wb_shift                           = False  #Perform random white balance shift
+wb_shift                           = True   # Perform random white balance shift

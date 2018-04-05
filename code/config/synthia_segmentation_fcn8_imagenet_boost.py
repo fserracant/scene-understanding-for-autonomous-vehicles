@@ -15,7 +15,7 @@ weights_file                 = 'vgg16_weights_tf_dim_ordering_tf_kernels.h5'  # 
 # Parameters
 train_model                  = True           # Train the model
 test_model                   = True            # Test the model
-pred_model                   = False           # Predict using the model
+pred_model                   = True           # Predict using the model
 
 # Debug
 debug                        = False           # Use only few images for debuging
