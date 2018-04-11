@@ -1,8 +1,8 @@
 # Dataset
 problem_type                 = 'segmentation'  # ['classification' | 'detection' | 'segmentation']
 dataset_name                 = 'camvid'        # Dataset name
-dataset_name2                = 'synthia_rand_cityscapes'  # Second dataset name. None if not Domain Adaptation
-perc_mb2                     = 40            # Percentage of data from the second dataset in each minibatch
+dataset_name2                = None#'synthia_rand_cityscapes'  # Second dataset name. None if not Domain Adaptation
+perc_mb2                     = None#40            # Percentage of data from the second dataset in each minibatch
 
 # Model
 model_name                   = 'fcn8'          # Model to use ['fcn8' | 'lenet' | 'alexNet' | 'vgg16' |  'vgg19' | 'resnet50' | 'InceptionV3']

@@ -9,13 +9,13 @@ model_name                   = 'fcn8'          # Model to use ['fcn8' | 'lenet' 
 freeze_layers_from           = None            # Freeze layers from 0 to this layer during training (Useful for finetunning) [None | 'base_model' | Layer_id]
 show_model                   = True            # Show the architecture layers
 load_imageNet                = False            # Load Imagenet weights and normalize following imagenet procedure
-load_pretrained              = False           # Load a pretrained model for doing finetuning
+load_pretrained              = True           # Load a pretrained model for doing finetuning
 weights_file                 = 'weights.hdf5'  # Training weight file name
 
 # Parameters
-train_model                  = True            # Train the model
+train_model                  = False            # Train the model
 test_model                   = True            # Test the model
-pred_model                   = True            # Predict using the model
+pred_model                   = False            # Predict using the model
 
 # Debug
 debug                        = False           # Use only few images for debuging

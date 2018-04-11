@@ -9,13 +9,13 @@ model_name                   = 'SegNetPoolInd' # Model to use ['fcn8' | 'lenet' 
 freeze_layers_from           = None            # Freeze layers from 0 to this layer during training (Useful for finetunning) [None | 'base_model' | Layer_id]
 show_model                   = True            # Show the architecture layers
 load_imageNet                = False           # Load Imagenet weights and normalize following imagenet procedure
-load_pretrained              = True           # Load a pretrained model for doing finetuning
+load_pretrained              = False           # Load a pretrained model for doing finetuning
 weights_file                 = 'weights.hdf5'  # Training weight file name
 
 # Parameters
-train_model                  = False            # Train the model
+train_model                  = True            # Train the model
 test_model                   = True            # Test the model
-pred_model                   = False           # Predict using the model
+pred_model                   = True           # Predict using the model
 
 # Debug
 debug                        = False           # Use only few images for debuging
@@ -44,13 +44,13 @@ seed_valid                   = 1924            # Random seed for the validation 
 seed_test                    = 1924            # Random seed for the testing shuffle
 
 # Training parameters
-optimizer                    = 'rmsprop'       # Optimizer
+optimizer                    = 'adam'          # Optimizer
 learning_rate                = 0.0001          # Training learning rate
-weight_decay                 = 0.              # Weight decay or L2 parameter norm penalty
-n_epochs                     = 200             # Number of epochs during training
+weight_decay                 = 5e-4            # Weight decay or L2 parameter norm penalty
+n_epochs                     = 300             # Number of epochs during training
 
 # Callback save results
-save_results_enabled         = False            # Enable the Callback
+save_results_enabled         = True            # Enable the Callback
 save_results_nsamples        = 5               # Number of samples to save
 save_results_batch_size      = 5               # Size of the batch
 
@@ -121,4 +121,4 @@ da_spline_warp                     = False  # Enable elastic deformation
 da_warp_sigma                      = 10     # Elastic deformation sigma
 da_warp_grid_size                  = 3      # Elastic deformation gridSize
 da_save_to_dir                     = False  # Save the images for debuging
-wb_shift                           = False  #Perform random white balance shift
+wb_shift                           = True   #Perform random white balance shift

@@ -38,9 +38,12 @@ def process(cf):
     print('\n > Creating callbacks...')
     cb = Callbacks_Factory().make(cf, valid_gen)
 
+    # Define class weights for the loss function(if used). Useful for very unbalanced datasets
+    
+
     if cf.train_model:
         # Train the model
-        model.train(train_gen, valid_gen, cb)
+	model.train(train_gen, valid_gen, cb)
 
     if cf.test_model:
         # Compute test metrics

@@ -18,7 +18,7 @@ classes derived from Model are returned by method make() of the Model_Factory
 class.
 """
 class Model():
-    def train(self, train_gen, valid_gen, cb):
+    def train(self, train_gen, valid_gen, cb, class_weight=None):
         pass
 
     def predict(self, test_gen, tag='pred'):
@@ -43,7 +43,7 @@ class One_Net_Model(Model):
         self.model = model
 
     # Train the model
-    def train(self, train_gen, valid_gen, cb):
+    def train(self, train_gen, valid_gen, cb, class_weight=None):
         if (self.cf.train_model):
             print('\n > Training the model...')   
             hist = self.model.fit_generator(generator=train_gen,
@@ -53,7 +53,7 @@ class One_Net_Model(Model):
                                             callbacks=cb,
                                             validation_data=valid_gen,
                                             validation_steps = self.cf.dataset.n_images_valid//self.cf.batch_size_valid,
-                                            class_weight=None,
+                                            class_weight=class_weight,
                                             max_queue_size=10,
                                             workers=1)
             print('   Training finished.')
